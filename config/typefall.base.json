@@ -1,0 +1,53 @@
+// The base tsconfig for typefall.
+
+{
+    "compilerOptions": {
+        "rootDir": "../projects/",
+        "outDir": "../build/",
+
+        "forceConsistentCasingInFileNames": true,
+        "allowSyntheticDefaultImports":     true,           // Test this as an alternative to default imports
+        "noFallthroughCasesInSwitch":       true,
+        "noUnusedParameters":               true,
+        "noImplicitReturns":                true,
+        "strictNullChecks":                 true,
+        "noImplicitThis":                   true,
+        "noUnusedLocals":                   false,          // Better to lint with TSLint than to error
+        "noEmitOnError":                    true,
+        "noImplicitAny":                    true,
+        "alwaysStrict":                     true,
+        "sourceMap":                        false,          // Sourcemap support in AeTF 2.0
+        "allowJs":                          false,
+        "target":                           "es5",          // ES5:Compat; ES6:Next
+        "pretty":                           true,
+        "noLib":                            true,
+
+        // Debug:
+        "listEmittedFiles":                 true,
+        "traceResolution":                  true,
+        "listFiles":                        true,
+        "watch":                            true
+    },
+
+    "include": [
+        "../projects/**/*.ts",
+        "../definition/typefall.d.ts",
+        "../node_modules/typescript/lib/lib.es2015.core.d.ts"
+    ],
+
+    "exclude": [
+        "node_modules",
+        "../compiler/**/*.*"
+    ],
+
+    // Test?
+    "typeAcquisition": {
+        "enable": false
+    },
+
+    // Development
+    "compileOnSave": true,
+
+    // AeTF Settings
+    "luaTarget": "JIT"
+}

@@ -1,0 +1,21 @@
+{
+  "name": "aetypefall",
+  "version": "0.1.0",
+  "description": "AeTF - AeTypeFall",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/Aeomi/AeTypeFall.git"
+  },
+  "author": "Aeomi",
+  "license": "SEE LICENSE IN LICENSE.TXT",
+  "bugs": {
+    "url": "https://github.com/Aeomi/AeTypeFall/issues"
+  },
+  "homepage": "https://github.com/Aeomi/AeTypeFall#readme",
+  "dependencies": {
+    "typescript": "^2.8.1"
+  }
+}

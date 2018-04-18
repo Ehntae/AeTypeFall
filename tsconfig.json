@@ -1,0 +1,31 @@
+// Standard TS settings, do not report bugs without default settings.
+// This tsconfig is parsed by the AeTF Compiler.
+// Do not set module to non-default.
+
+{
+    "compilerOptions": {
+        "forceConsistentCasingInFileNames": true,
+        "allowSyntheticDefaultImports":     true,           // Test this as an alternative to default imports
+        "noFallthroughCasesInSwitch":       true,
+        "noUnusedParameters":               true,
+        "noImplicitReturns":                true,
+        "strictNullChecks":                 true,
+        "noImplicitThis":                   true,
+        "noUnusedLocals":                   false,          // Better to lint with TSLint than to error
+        "noEmitOnError":                    true,
+        "noImplicitAny":                    true,
+        "alwaysStrict":                     true,
+        "pretty":                           true,
+
+        // Development & debugging
+        "listEmittedFiles":                 true,
+        "traceResolution":                  true,
+        "listFiles":                        true,
+        "watch":                            true
+    },
+
+    "extends": "./config/typefall.base.json",
+
+    // Development
+    "compileOnSave": true
+}

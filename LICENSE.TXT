@@ -1,0 +1,3 @@
+Copyright (c) All rights reserved
+
+Transpiler inspired by TSTL (MIT) - https://github.com/Perryvw
