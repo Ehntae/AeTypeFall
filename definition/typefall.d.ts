@@ -1,25 +1,41 @@
-/** [Shared] True when client realm is actively executing */
+/** [Shared] True when client realm is actively executing. */
 declare const CLIENT : boolean;
 
-/** [Shared] True when server realm is actively executing */
+/** [Shared] True when server realm is actively executing. */
 declare const SERVER : boolean;
 
-/**
- * [Shared]
+/** [Shared]
  * Starfall's builtin print function
- * @param messages A variable argument list of strings to print 
+ * @param messages A variable argument list of strings to print.
  */
 declare function print(...messages: string[]): void;
 
-/**
- * [Shared]
- * Garry's recursive table-printing function (useful to see the keys and values that comprise an array)
- * @param table Lua table object to print
+/** [Shared]
+ * Garry's recursive table-printing function (useful to see the keys and values that comprise an array).
+ * @param table Lua table object to print.
  */
 declare function printTable(table: object): void;
 
+/** [Shared] 
+ * Used to get the entity type representation of the Starfall processor that the code is executing from.
+ * @returns IEntity The Starfall processor.
+ */
 declare function chip(): IEntity;
+
+/** [Shared]  
+ * Generally used to get the player who placed the processor.
+ * @returns IEntity Representing the player who owns the Starfall processor running this code.
+*/
 declare function owner(): IEntity;
+
+
+/** [Shared]  
+ * Used to get the entity object representing the player with a given userId.
+ * Type "status" in console to get userIds
+ * @param userId The userId of the player you want to get.
+ * @returns IEntity | undefined Will undefined (nil) 
+*/
+declare function player(userId:number): IEntity | undefined;
 
 
 /** [Shared] Starfall's builtin hook library */
@@ -36,7 +52,7 @@ declare namespace hook {
     /**
      * [Shared]
      * Used to remove callbacks (hooks) from a specified event
-     * @param eventName Name of the event the hook is attached to
+     * @param eventName Name of the event the 'hook' is attached to
      * @param hookName Unique identifier for the hook to remove from the event
      */
     function remove(eventName: string, hookName: string): void;
