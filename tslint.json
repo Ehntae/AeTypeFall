@@ -1,0 +1,12 @@
+{
+    "extends": [
+        "tslint:recommended"
+    ],
+
+    "rules": {
+        "space-within-parens": false,
+        "no-consecutive-blank-lines": false,
+        "no-namespace": false,
+        "adjacent-overload-signatures": true
+    }
+}
