@@ -1,0 +1,58 @@
+{
+    "rules": {
+        "adjacent-overload-signatures": true,
+        "max-classes-per-file": [true, 1],
+        "no-consecutive-blank-lines": false,
+        "no-namespace": false,
+        // "no-any": true, Re-enable once stubs are removed from definitions
+        "prefer-conditional-expression": true,
+        "prefer-const": true,
+        "prefer-for-of": true,
+        "prefer-readonly": true,
+        "prefer-switch": true,
+        "prefer-template": true,
+        "space-within-parens": true,
+        "interface-name": true,
+        "no-invalid-template-strings": true,
+        "whitespace": true,
+        "no-irregular-whitespace": true,
+        "no-redundant-jsdoc": true,
+        "no-unnecessary-callback-wrapper": true,
+        "no-trailing-whitespace": true,
+        // "only-arrow-functions": true,
+        "arrow-return-shorthand": true,
+        "member-access": true,
+        "member-ordering": [ 
+            true,
+            {
+                "order": [
+                    "private-static-field",
+                    "protected-static-field",
+                    "public-static-field",
+                    
+                    "private-instance-field",
+                    "protected-static-field",
+                    "public-instance-field",
+
+                    "private-constructor",
+                    "public-constructor",
+
+                    "private-instance-method",
+                    "protected-instance-method",
+                    "public-instance-method"
+                ]
+            }
+        ],
+        "array-type":false,
+        "no-arg": true,
+        "no-console": true,
+        "no-default-export": true,
+        "no-empty-interface": true,
+        "no-import-side-effect": true,
+        "no-unsafe-any": true,
+        "no-internal-module": true,
+        "no-non-null-assertion": true,
+        "no-var-keyword": true,
+        "no-var-requires": true
+    }
+}

@@ -1,80 +1,200 @@
-/** [Shared] True when client realm is actively executing. */
-declare const CLIENT : boolean;
+/*! *************************************************************************
+    This is a derivative project to AeGType; Typescript, C#, and Javascript transpilation
+    for Garry's mods' development.
 
-/** [Shared] True when server realm is actively executing. */
-declare const SERVER : boolean;
+    typefall.d.ts serves as the culimation of efforts that goes towards documenting
+    and type-defining the poorly documented starfall. This definition project follows
+    both the GPI-NUx9 standards, and the TDP (Typescript Definitions Procedures) for high
+    quality definition assurance.
 
-/** [Shared]
- * Starfall's builtin print function
+    Copyright (C) 2018  Aeomi
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+***************************************************************************** !*/
+
+/* *****************************************************************************
+    ! Project JSDoc Standards
+
+    * Required decorators; in order:
+
+    @realm
+        * Realm  | Must be one of: Server, Client, Shared
+    @description
+        * ...    | Describe general use case
+    @param
+        * Name   | Parameter name
+        * ...    | Always provide information on the parameter's purpose
+    @returns
+        * ...    | Always provide information on the returning value
+
+    * Notes
+        * The sentences that comprise JSDocs must end in a periods
+
+/* *********************************** End ************************************* */
+
+/**
+ * @realm Shared
+ * @description Convert a given value into a string.
+ * @param value The target of the conversion.
+ * @returns A number input is guarenteed to convert successfully.
+ */
+declare function toString(value: number): string;
+
+/**
+ * @description Attempt to convert a given value into a string
+ * @param value The target of the conversion.
+ * @returns As the input can be of any value, a failure to convert may occur.
+ */
+// tslint:disable-next-line:no-any
+declare function toString(value: any): string | undefined;
+
+
+/**
+ * Reserved names; recursively blocking interface for reserved Lua keywords.
+ */
+// tslint:disable-next-line:interface-name
+declare interface RESERVED {
+    DO_NOT_USE_RESERVED_NAME: RESERVED;
+}
+
+declare const elseif: RESERVED;
+declare const repeat: RESERVED;
+declare const local: RESERVED;
+declare const until: RESERVED;
+declare const goto: RESERVED;
+declare const then: RESERVED;
+declare const and: RESERVED;
+declare const nil: RESERVED;
+declare const end: RESERVED;
+declare const not: RESERVED;
+
+
+
+/**
+ * @realm Shared
+ * @description True when client realm is actively executing.
+ */
+declare const CLIENT: boolean;
+
+/**
+ * @realm Shared
+ * @description True when server realm is actively executing.
+ */
+declare const SERVER: boolean;
+
+/**
+ * @realm Shared
+ * @description Starfall's builtin print function.
  * @param messages A variable argument list of strings to print.
  */
 declare function print(...messages: string[]): void;
 
-/** [Shared]
- * Garry's recursive table-printing function (useful to see the keys and values that comprise an array).
+/**
+ * @realm Shared
+ * @description Garry's recursive table-printing function (useful to see the keys and values that comprise an array).
  * @param table Lua table object to print.
  */
 declare function printTable(table: object): void;
 
-/** [Shared] 
+/**
+ * @realm Shared
  * Used to get the entity type representation of the Starfall processor that the code is executing from.
  * @returns IEntity The Starfall processor.
  */
 declare function chip(): IEntity;
 
-/** [Shared]  
+/**
+ * @realm Shared
  * Generally used to get the player who placed the processor.
  * @returns IEntity Representing the player who owns the Starfall processor running this code.
-*/
+ */
 declare function owner(): IEntity;
 
 
-/** [Shared]  
- * Used to get the entity object representing the player with a given userId.
- * Type "status" in console to get userIds
+/**
+ * @realm Shared
+ * @description Used to get the entity object representing the player with a given userId.
+ * @example Type "status" in console to get userIds
  * @param userId The userId of the player you want to get.
- * @returns IEntity | undefined Will undefined (nil) 
-*/
-declare function player(userId:number): IEntity | undefined;
+ * @returns IEntity | undefined Will be undefined (nil) if the userId is invalid.
+ */
+declare function player(userId: number): IEntity | undefined;
 
 
-/** [Shared] Starfall's builtin hook library */
+/**
+ * @realm Shared
+ * @description Starfall's builtin hook library
+ */
 declare namespace hook {
     /**
-     * [Shared]
-     * Used to attach named callbacks (hooks) to specific events (for event driven code execution)
+     * @realm Shared
+     * @description Used to attach named callbacks (hooks) to specific events (for event driven code execution)
      * @param eventName Name of the event to 'hook' the callback to
      * @param hookName Unique identifier for the hook being attached to the event
      * @param callback The function that is called(back) whenever the event fires
      */
-    function add(eventName: string, hookName: string, callback: Function): void;
+    function add(eventName: string, hookName: string, callback: () => void): void;
 
     /**
-     * [Shared]
-     * Used to remove callbacks (hooks) from a specified event
+     * @realm Shared
+     * @description Used to remove callbacks (hooks) from a specified event
      * @param eventName Name of the event the 'hook' is attached to
      * @param hookName Unique identifier for the hook to remove from the event
      */
     function remove(eventName: string, hookName: string): void;
 }
 
-/** [Client] Starfall's builtin render library */
+/**
+ * @realm Client
+ * @description Starfall's builtin render library
+ */
 declare namespace render {
+
     function drawRect(x: number, y: number, width: number, height: number): void;
+
     function drawRectOutline(x: number, y: number, width: number, height: number): void;
+
     function drawRoundedBox(cornerRadius: number, x: number, y: number, width: number, height: number): void;
-    function drawRoundedBoxEX(cornerRadius: number, x: number, y: number, width: number, height: number, 
-        roundTopLeft: boolean, roundTopRight: boolean, roundBottomLeft: boolean, roundBottomRight: boolean): void;
-    function drawSimpleText(x: number, y: number, text: string, xAlignment?: any, yAlignment?: any): void; // TODO: Figure out type
+
+    function drawRoundedBoxEX(
+        cornerRadius: number, x: number, y: number, width: number, height: number,
+        roundTopLeft: boolean, roundTopRight: boolean, roundBottomLeft: boolean, roundBottomRight: boolean,
+    ): void;
+
+    // TODO: Figure out types here...
+    // function drawSimpleText(x: number, y: number, text: string, xAlignment?: any, yAlignment?: any): void;
     function drawText(x: number, y: number, alignment: any): void; // TODO: Figure out type
+
     function setColor(color: IColor): void;
-    /** !TupleReturn */
-    function cursorPos(player: IPlayer): [number, number]; // TODO: Create interface for this 
+
+    /**
+     * !TupleReturn
+     * @realm Clientside
+     * @description Used to get the cursor position
+     * @example let [x, y] = render.cursorPos(owner());
+     * @param player dd
+     * @returns [number, number]
+     */
+    function cursorPos(player: IPlayer): [number, number]; // TODO: Create interface for this?
 }
 
-declare interface IFilter {
-    (ent: IEntity) : boolean
-}
+// ? Appropriate to use type over this?
+// // declare interface IFilter {
+// //     (ent: IEntity): boolean
+// // }
+
+declare type IFilter = (entity: IEntity) => boolean;
 
 declare namespace find {
     function all(filter: IFilter): IEntity[];
@@ -82,7 +202,8 @@ declare namespace find {
     function byClass(className: string, filter: IFilter): IEntity[];
     function byModel(model: string, filter: IFilter): IEntity[];
     function inBox(corner1: IVector, corner2: IVector, filter: IFilter): IEntity[];
-    function inCone(pos: IVector, direction: IVector, distance: number, radius: number, filter: IFilter): IEntity[]; // TODO: Confirm that direction is a Vector, not an Angle.
+    // TODO: Confirm that direction is a Vector, not an Angle:
+    function inCone(pos: IVector, direction: IVector, distance: number, radius: number, filter: IFilter): IEntity[];
     function inSphere(center: IVector, radius: number, filter: IFilter): IEntity[];
 }
 
@@ -93,15 +214,21 @@ declare namespace holograms {
 }
 
 declare interface IScreenVector {
-    x: number,
-    y: number,
-    visible: true
+    x: number;
+    y: number;
+    visible: true;
 }
 
-/** [Shared] Starfall's builtin vector construction function */
-declare function Vector(x: number, y: number, z?:number): IVector;
+/**
+ * @realm Shared
+ * @description Starfall's builtin vector construction function
+ */
+declare function Vector(x: number, y: number, z?: number): IVector;
 
-/** [Shared] Starfall's builtin render library */
+/**
+ * @realm Shared
+ * @description Starfall's builtin render library
+ */
 declare interface IVector {
     x: number;
     y: number;
@@ -124,7 +251,8 @@ declare interface IVector {
     mul(scalar: number): void;
     normalize(): void;
     rotate(IAngle: IAngle): void;
-    rotateAroundAxis(axis: IVector, degrees: number, radians: number): IVector; // TODO: See what can be optionalized here.
+    // TODO: See what can be optionalized here:
+    rotateAroundAxis(axis: IVector, degrees: number, radians: number): IVector;
     set(IVector: IVector): void;
     setX(x: number): IVector;
     setY(y: number): IVector;
@@ -137,10 +265,16 @@ declare interface IVector {
     withinAABox(IVector1: IVector, IVector2: IVector): boolean;
 }
 
-/** [Shared] Starfall's builtin angle construction function */
-declare function Angle(pitch: number, yaw:number, roll: number): IAngle;
+/**
+ * @realm Shared
+ * @description Starfall's builtin angle construction function
+ */
+declare function Angle(pitch: number, yaw: number, roll: number): IAngle;
 
-/** [Shared] Starfall's builtin angle library */
+/**
+ * @realm Shared
+ * @description Starfall's builtin angle library
+ */
 declare interface IAngle {
     p: number;
     y: number;
@@ -148,14 +282,15 @@ declare interface IAngle {
     pitch: number;
     yaw: number;
     roll: number;
-    
-    getForward(): IVector
-    getNormalized(): IAngle
-    getRight(): IVector
-    getUp(): IVector
-    isZero(): boolean
-    normalize(): void
-    rotateAroundAxis(axis: IVector, degrees: number, radians: number): IAngle; // TODO: See what can be optionalized here.
+
+    getForward(): IVector;
+    getNormalized(): IAngle;
+    getRight(): IVector;
+    getUp(): IVector;
+    isZero(): boolean;
+    normalize(): void;
+    // TODO: See what can be optionalized here.
+    rotateAroundAxis(axis: IVector, degrees: number, radians: number): IAngle;
     set(IAngle: IAngle): void;
     setP(pitch: number): IAngle;
     setR(roll: number): IAngle;
@@ -163,7 +298,10 @@ declare interface IAngle {
     setZero(): void;
 }
 
-/** [Client] Starfall's builtin bass library */
+/**
+ * @realm Client
+ * @description Starfall's builtin bass library
+ */
 declare interface IBass {
     getFFT(samples: number): number[];
     getLength(): number;
@@ -181,24 +319,31 @@ declare interface IBass {
     stop(): void;
 }
 
-/** [Shared] Starfall's builtin color construction function */
+/**
+ * @realm Shared
+ * @description Starfall's builtin color construction function
+*/
 declare function Color(red: number, green: number, blue: number, alpha?: number): IColor;
 
-/** [Shared] Starfall's builtin color library */
+/**
+ * @realm Shared
+ * @description Starfall's builtin color library.
+*/
 declare interface IColor {
     r: number;
     g: number;
     b: number;
+    a?: number;
     h: number;
     s: number;
     v: number;
 
     hsvToRGB(): IColor;
     rgbToHSV(): IColor;
-    setA(a: number): IColor;
-    setB(g: number): IColor;
-    setG(b: number): IColor;
     setR(r: number): IColor;
+    setG(b: number): IColor;
+    setB(g: number): IColor;
+    setA(a: number): IColor;
 }
 
 /*declare enum CHAN {
@@ -215,16 +360,58 @@ declare interface IColor {
     USER_BASE
 }*/
 
-/** [Shared] Starfall's builtin entity library */
+
+/**
+ * @realm Shared
+ * @description Garry's mod's [CollisionData interface](http://wiki.garrysmod.com/page/Structures/CollisionData).
+ */
+declare interface ICollisionData {
+    /** The collision position */
+    HitPos: IVector;
+
+    /** The other collision entity */
+    HitEntity: IEntity;
+
+    /** The entity's velocity before the collision  */
+    OurOldVelocity: IVector;
+
+    /** Other entity's physics object  */
+    HitObject: IPhysObj;
+
+    /** Time since the last collision with this HitEntity */
+    DeltaTime: number;
+
+    /** Speed of the other entity before the collision  */
+    TheirOldVelocity: IVector;
+
+    /** The speed of the entity before the collision  */
+    Speed: number;
+
+    /** Normal of the surface that hit the other entity */
+    HitNormal: IVector;
+
+    /** Entity's physics object */
+    PhysObject: IPhysObj;
+
+}
+
+/**
+ * @realm Shared
+ * @description Starfall's builtin entity library.
+ */
 declare interface IEntity {
-    addCollisionListener(callback: Function): void;
+    addCollisionListener(callback: (collisionData: ICollisionData) => void): void;
     applyAngForce(IAngle: IAngle): void;
-    applyDamage(damage: number, attacker: IEntity, inflictor: IEntity): void; // TODO: Verify that attacker and inflictor are, in fact, entities.
+
+    // TODO: Verify that attacker and inflictor are, in fact, entities.
+    applyDamage(damage: number, attacker: IEntity, inflictor: IEntity): void;
     applyForceCenter(force: IVector): void;
     applyForceOffset(force: IVector, offset: IVector): void;
     applyTorque(torque: IVector): void;
     breakEnt(): void;
-    emitSound(path: string, level?: number, pitch?: number, channel?: number): void; //TODO: clarify this by interrogating sfex devs
+
+    // TODO: clarify this by interrogating sfex devs
+    emitSound(path: string, level?: number, pitch?: number, channel?: number): void;
     enableDrag(enable: boolean): void;
     enableGravity(enable: boolean): void;
     enableMotion(enable: boolean): void;
@@ -240,7 +427,7 @@ declare interface IEntity {
     getBoneMatrix(index?: number): IVMatrix;
     getBoneName(bone?: number): string;
     getBoneParent(bone?: number): string;
-    getBonePosition(bone?:number): any; // TODO: Figure out how this function returns.
+    getBonePosition(bone?: number): any; // TODO: Figure out how this function returns.
     getClass(): string;
     getColor(): IColor;
     getEyeIAngles(): IAngle;
@@ -296,7 +483,7 @@ declare interface IEntity {
     setBodygroup(id: number, value: number): void;
     setColor(color: IColor): void;
     setDrawShadow(enable: boolean, IPlayer: IPlayer): void;
-    setDrawShadow(enable: boolean, IPlayers: IPlayer[]): void;
+    // setDrawShadow(enable: boolean, IPlayers: IPlayer[]): void;
     setFrozen(state: boolean): void;
     setHologramMesh(mesh: IMesh): void;
     setHologramRenderBounds(IVector1: IVector, IVector2: IVector): void;
@@ -314,7 +501,10 @@ declare interface IEntity {
     setSkin(index: number): void;
     setSolid(solid: boolean): void;
     setSubMaterial(index: number, material: string): void;
-    setTrails(startSize: number, endSize: number, length: number, material: string, color: IColor, attachmentID?: number, additive?: boolean): void;
+    setTrails(
+        startSize: number, endSize: number, length: number, material: string, color: IColor,
+        attachmentID?: number, additive?: boolean,
+    ): void;
     setVelocity(velocity: IVector): void;
     translateBoneToPhysBone(id: number): number;
     translatePhysBoneToBone(id: number): number;
@@ -327,6 +517,7 @@ declare interface IEntity {
  * Stub VMatrix Interface
  */
 declare interface IVMatrix {
+    STUB: any;
     // TODO: Populate Stub IVMatrix Interface
 }
 
@@ -334,6 +525,7 @@ declare interface IVMatrix {
  * Stub Player Interface
  */
 declare interface IPlayer {
+    STUB: any;
     // TODO: Populate Stub Player Interface
 }
 
@@ -341,11 +533,13 @@ declare interface IPlayer {
  * Stub PhysObj Interface
  */
 declare interface IPhysObj {
+    STUB: any;
     // TODO: Populate Stub PhysObj Interface
 }
 
 /**
- * Starfall's Mesh Type
+ * @realm Shared
+ * @description Starfall's Mesh Type
  */
 declare interface IMesh {
     // TODO: Verify that there isn't actually anything else that can be done to Meshes.
@@ -353,7 +547,7 @@ declare interface IMesh {
     draw(): void;
 }
 
-/** [Server] Starfall's builtin hook library */
+
 declare interface IHologram extends IEntity {
     getAnimationLength(): number;
     getAnimationNumber(name: string): number;
@@ -361,7 +555,8 @@ declare interface IHologram extends IEntity {
     getPose(name: string): number; // TODO: Verify that this actually returns a number.
     setAngVel(angVel: IVector): void;
     setAnimation(name: string, frame: number, rate: number): void;
-    setClip(index: number, enabled: boolean, origin: IVector, normal: IVector, local: boolean): void; // TODO: Verify that normal is a Vector.
+    // TODO: Verify that normal is a Vector.
+    setClip(index: number, enabled: boolean, origin: IVector, normal: IVector, local: boolean): void;
     setFlexScale(scale: IVector): void; // TODO: Ensure that scale is a Vector, and not an number.
     setFlexWeight(id: number, weight: number): void;
     setModel(model: string): void;

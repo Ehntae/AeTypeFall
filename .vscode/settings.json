@@ -1,3 +1,7 @@
 {
+    // Render json files as jsonc files for comment support
+    "files.associations": {
+        "*.json": "jsonc"
+    },
     "typescript.tsdk": "node_modules\\typescript\\lib"
 }

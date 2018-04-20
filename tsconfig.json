@@ -1,6 +1,6 @@
 // Standard TS settings, do not report bugs without default settings.
 // This tsconfig is parsed by the AeTF Compiler.
-// Do not set module to non-default.
+// ! Do not set module to non-default.
 
 {
     "compilerOptions": {
