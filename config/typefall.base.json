@@ -18,7 +18,7 @@
         "alwaysStrict":                     true,
         "sourceMap":                        false,          // Sourcemap support in AeTF 2.0
         "allowJs":                          false,
-        "target":                           "es5",          // ES5:Compat; ES6:Next
+        "target":                           "es2015",          // ES2015:Compat; ES6:Next
         "pretty":                           true,
         "noLib":                            true,
 
@@ -32,7 +32,7 @@
     "include": [
         "../projects/**/*.ts",
         "../definition/typefall.d.ts",
-        "../node_modules/typescript/lib/lib.es2015.core.d.ts"
+        "../definition/typescript.lib.d.ts"
     ],
 
     "exclude": [
