@@ -3,6 +3,8 @@
 // ! Do not set module to non-default.
 
 {
+    "extends": "./config/typefall.base.json",
+
     "compilerOptions": {
         "forceConsistentCasingInFileNames": true,
         "allowSyntheticDefaultImports":     true,           // Test this as an alternative to default imports
@@ -23,8 +25,6 @@
         "listFiles":                        true,
         "watch":                            true
     },
-
-    "extends": "./config/typefall.base.json",
 
     // Development
     "compileOnSave": true
