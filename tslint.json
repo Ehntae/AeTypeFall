@@ -1,3 +1,8 @@
 {
-    "extends": "./config/tslint.json"
+    "extends": "./config/tslint.json",
+
+    "rules": {
+        // * Limiting the number of lines allowed in a file allows files to remain small, single purpose, and maintainable.
+        "max-file-line-count": [true, 300] 
+    }
 }
