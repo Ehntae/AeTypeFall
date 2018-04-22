@@ -67,6 +67,38 @@ interface Function {
 // 	copyWithin(target: number, start: number, end?: number): this;
 // }
 
+interface RegExp {
+	/**
+	 * Returns a string indicating the flags of the regular expression in question. This field is read-only.
+	 * The characters in this string are sequenced and concatenated in the following order:
+	 *
+	 *    - "g" for global
+	 *    - "i" for ignoreCase
+	 *    - "m" for multiline
+	 *    - "u" for unicode
+	 *    - "y" for sticky
+	 *
+	 * If no flags are set, the value is the empty string.
+	 */
+	readonly flags: string;
+
+	/**
+	 * Returns a Boolean value indicating the state of the sticky flag (y) used with a regular
+	 * expression. Default is false. Read-only.
+	 */
+	readonly sticky: boolean;
+
+	/**
+	 * Returns a Boolean value indicating the state of the Unicode flag (u) used with a regular
+	 * expression. Default is false. Read-only.
+	 */
+	readonly unicode: boolean;
+}
+
+interface RegExpConstructor {
+	new (pattern: RegExp, flags?: string): RegExp;
+	(pattern: RegExp, flags?: string): RegExp;
+}
 
 interface ConcatArray<T> {
 	readonly length: number;
@@ -537,7 +569,8 @@ interface MapConstructor {
 	new (): Map<any, any>;
 	new <K, V>(entries?: ReadonlyArray<[K, V]>): Map<K, V>;
 }
-declare let Map: MapConstructor;
+
+declare const Map: MapConstructor;
 
 
 interface ReadonlyMap<K, V> {
@@ -579,7 +612,8 @@ interface SetConstructor {
 	new (): Set<any>;
 	new <T>(values?: ReadonlyArray<T>): Set<T>;
 }
-declare let Set: SetConstructor;
+
+declare const Set: SetConstructor;
 
 
 interface ReadonlySet<T> {
@@ -644,7 +678,6 @@ interface SymbolConstructor {
 declare const Symbol: SymbolConstructor;
 
 
-
 /**
  * * Iterable
  */
@@ -675,7 +708,6 @@ interface Iterable<T> {
 interface IterableIterator<T> extends Iterator<T> {
 	[Symbol.iterator](): IterableIterator<T>;
 }
-
 
 interface Array<T> {
 	/** Iterator */
