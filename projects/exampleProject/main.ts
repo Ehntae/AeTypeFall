@@ -4,7 +4,7 @@ if (CLIENT) return;
 function f(x: number) {
 	const str = `f-d a thing: ${toString(x)}`;
 
-	const arr: Primative[] = new Array<Primative>();
+	const arr: Primative[] = [];
 
 	arr.push(5);
 	arr.push("five");
@@ -37,10 +37,16 @@ if (true) throw Error("testError2");
 
 const div0 = 1 / 0;
 // tslint:disable-next-line:use-isnan
-if (div0 === NaN) print("nan");
-if (isNaN(div0)) print('fnan'); // See the resulting screen too
+// if (div0 === NaN) print("nan");
+// if (isNaN(div0)) print('fnan'); // See the resulting screen too
 
 class MyClass {
 	private readonly memba: string;
 	public member: string;
 }
+
+// // Test parsing
+// let x = "6.66";
+// let y = parseInt(x);
+
+// let z = Number(6);
