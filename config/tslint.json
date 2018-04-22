@@ -23,8 +23,7 @@
 		"arrow-return-shorthand": true,
 		"member-access": true,
 		"member-ordering": [
-			true,
-			{
+			true, {
 				"order": [
 					"private-static-field",
 					"protected-static-field",
@@ -43,6 +42,7 @@
 				]
 			}
 		],
+		"no-use-before-declare": true,
 		"array-type":false,
 		"no-arg": true,
 		"no-console": true,
@@ -58,19 +58,6 @@
 		"trailing-comma": [true, "esSpecCompliant"],
 		"promise-function-async": true,
 		"typedef": true,
-		"typedef-whitespace": [true,   {
-			"call-signature": "nospace",
-			"index-signature": "nospace",
-			"parameter": "nospace",
-			"property-declaration": "nospace",
-			"variable-declaration": "nospace"
-			}, {
-			"call-signature": "onespace",
-			"index-signature": "onespace",
-			"parameter": "onespace",
-			"property-declaration": "onespace",
-			"variable-declaration": "onespace"
-		  }],
 		"unified-signatures": true,
 		"no-unnecessary-qualifier": true,
 		"ban-comma-operator": true,

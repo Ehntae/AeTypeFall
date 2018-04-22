@@ -1,8 +1,23 @@
 {
-    "extends": "./config/tslint.json",
+	"extends": "./config/tslint.json",
 
-    "rules": {
-        // * Limiting the number of lines allowed in a file allows files to remain small, single purpose, and maintainable.
-        "max-file-line-count": [true, 300] 
-    }
+	"rules": {
+		// * Limiting the number of lines allowed in a file allows files to remain small, single purpose, and maintainable.
+		"max-file-line-count": [true, 300],
+
+		// * Typescript convention; enable to enforce consistency across all of typefall (change false to true)
+		"typedef-whitespace": [false, {
+			"call-signature": "nospace",
+			"index-signature": "nospace",
+			"parameter": "nospace",
+			"property-declaration": "nospace",
+			"variable-declaration": "nospace"
+			}, {
+			"call-signature": "onespace",
+			"index-signature": "onespace",
+			"parameter": "onespace",
+			"property-declaration": "onespace",
+			"variable-declaration": "onespace"
+		  }],
+	}
 }
