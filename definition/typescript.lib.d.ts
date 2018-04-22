@@ -622,13 +622,11 @@ interface ReadonlySet<T> {
 	has(value: T): boolean;
 }
 
-
 interface WeakSet<T extends object> {
 	add(value: T): this;
 	delete(value: T): boolean;
 	has(value: T): boolean;
 }
-
 
 interface WeakSetConstructor {
 	readonly prototype: WeakSet<object>;
