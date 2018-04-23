@@ -529,19 +529,20 @@ interface NumberConstructor {
 /** An object that represents a number of any kind. All JavaScript numbers are 64-bit floating-point numbers. */
 declare const Number: NumberConstructor;
 
-interface Error {
-	name: string;
-	message: string;
-	stack?: string;
-}
+// ! Error object (for stracktrace) unsupported
+// interface Error {
+// 	name: string;
+// 	message: string;
+// 	stack?: string;
+// }
 
-interface ErrorConstructor {
-	readonly prototype: Error;
-	new(message?: string): Error;
-	(message?: string): Error;
-}
+// interface ErrorConstructor {
+// 	readonly prototype: Error;
+// 	new(message?: string): Error;
+// 	(message?: string): Error;
+// }
 
-declare const Error: ErrorConstructor;
+// declare const Error: ErrorConstructor;
 
 
 /**

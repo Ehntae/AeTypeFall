@@ -17,7 +17,7 @@
         "noEmitOnError":                    true,
         "noImplicitAny":                    true,
         "alwaysStrict":                     true,
-        "pretty":                           true,
+        "pretty":                           false,
 
         // Development & debugging
         "listEmittedFiles":                 true,

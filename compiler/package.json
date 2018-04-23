@@ -1,0 +1,21 @@
+{
+  "name": "tfc",
+  "version": "0.2.1",
+  "description": "TypeFall Compiler",
+  "main": "tfc.js",
+  "author": "Aeomi",
+  "license": "SEE LICENSE IN ../LICENSE.TXT",
+  "dependencies": {
+    "@types/node": "^9.4.7",
+    "@types/yargs": "^11.0.0",
+    "yargs": "^11.0.0",
+    "alsatian": "^2.2.1",
+    "codecov": "^3.0.0",
+    "cross-spawn": "^6.0.5",
+    "deep-equal": "^1.0.1",
+    "execa": "^0.10.0",
+    "fs": "0.0.1-security",
+    "lua.vm.js": "0.0.1",
+    "nyc": "^11.5.0"
+  }
+}

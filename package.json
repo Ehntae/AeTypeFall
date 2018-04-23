@@ -1,9 +1,12 @@
 {
   "name": "aetypefall",
-  "version": "0.1.0",
+  "version": "0.1.6",
   "description": "AeTF - AeTypeFall",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "tfc": "./compiler/tfc"
   },
   "repository": {
     "type": "git",

@@ -1,4 +1,4 @@
-// The base tsconfig for typefall.
+// * The base tsconfig for typefall
 
 {
     "compilerOptions": {

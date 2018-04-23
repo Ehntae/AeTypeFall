@@ -1,0 +1,19 @@
+// * Transpiler specific typescript config
+
+{
+    "compilerOptions": {
+        "rootDir": "../",
+        "outDir": "../build/"
+    },
+
+    "include": [
+        "../projects/**/*.ts",
+        "../definition/typefall.d.ts"
+    ],
+
+    "exclude": [
+        "node_modules"
+    ],
+
+    "luaTarget": "JIT"
+}
