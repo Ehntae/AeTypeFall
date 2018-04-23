@@ -15,9 +15,12 @@
 * Open your command line of choice and change the working directory to the cloned **AeTypeFall** directory.
   * i.e. cmd for windows, bash for Linux and mac.
 * Run the following commands:
-  * npm i
-  * This will install dependencies.
-  * npm i -g tslint
+  * *npm i*
+    * This will install typefall dependencies.
+  * *cd compiler*
+  * *npm i*
+    * This will install compiler dependencies in its directory.
+  * *npm i -g tslint*
     * Install tslint (Typescript linting and enhanced intellisense) globally.
 
 ### To create your first **AeTypeFall** project
