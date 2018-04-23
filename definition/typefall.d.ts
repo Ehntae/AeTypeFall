@@ -56,7 +56,6 @@ declare function toString(value: Primative): string;
  * @param value The target of the conversion.
  * @returns As the input can be of any value, a failure to convert may occur.
  */
-// tslint:disable-next-line:no-any
 declare function toString(value: any): string | undefined;
 
 
@@ -177,9 +176,8 @@ declare namespace render {
 		roundTopLeft: boolean, roundTopRight: boolean, roundBottomLeft: boolean, roundBottomRight: boolean,
 	): void;
 
-	// TODO: Figure out types here...
-	// function drawSimpleText(x: number, y: number, text: string, xAlignment?: any, yAlignment?: any): void;
-	function drawText(x: number, y: number, alignment: any): void; // TODO: Figure out type
+	function drawSimpleText(x: number, y: number, text: string, xAlignment?: number, yAlignment?: number): void;
+	// function drawText(x: number, y: number, alignment: any): void; // TODO: Figure out type
 
 	function setColor(color: IColor): void;
 
@@ -191,13 +189,9 @@ declare namespace render {
 	 * @param player dd
 	 * @returns [number, number]
 	 */
-	function cursorPos(player: IPlayer): [number, number]; // TODO: Create interface for this?
+	function cursorPos(player: IPlayer): [number, number]; // ? Create interface for this?
 }
 
-// ? Appropriate to use type over this?
-// // declare interface IFilter {
-// //     (ent: IEntity): boolean
-// // }
 
 declare type IFilter = (entity: IEntity) => boolean;
 
