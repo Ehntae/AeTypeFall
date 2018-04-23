@@ -24,3 +24,9 @@
 
 * Navigate to the *projects* directory and create a new directory for your project; name it after your project.
 * Begin by creating a *main.ts* file, this will act as the entry point of the project; i.e. the file you will open in Starfall and place to run and re-run the relevant project.
+
+### Known issues
+
+* The *undefined* keyword currently does not work as intended. Use the *null* keyword instead. It will transpile correctly to lua's *nil*.
+* A project directory must not contain sub-directories, as they will currently incorrectly compile, this will be fixed soon.
+* Iterators have been found to produce sporadic syntax errors, use with care (and send an issue if you have any.)
