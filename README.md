@@ -22,6 +22,7 @@
     * This will install compiler dependencies in its directory.
   * "*npm i -g tslint*"
     * Install tslint (Typescript linting and enhanced intellisense) globally.
+* Next, install the TSLint extension into your editor for dynamic linting (this is the procedure for VSCode; I have not tested this for the Atom editor.)
 
 ### To create your first **AeTypeFall** project
 
