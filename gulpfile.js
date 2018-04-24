@@ -74,14 +74,8 @@ gulp.task("sync", cb => {
 
 gulp.task("compileSync", gulp.series("compile", "sync"));
 
+// gulp.task("dev", cb => {
 
-/**
- * Currently will only watch for typescript changes,
- * this could be changed to allow the user to edit the built lua files.
- * However, this isn't supported, and could lead to problems.
- */
-gulp.task("dev", cb => {
+//     // project change => compile => sync
 
-    // project change => compile => sync
-
-});
+// });
