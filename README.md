@@ -31,5 +31,5 @@
 ### Known issues
 
 * The *undefined* keyword currently does not work as intended. Use the *null* keyword instead. It will transpile correctly to lua's *nil*.
-* A project directory must not contain sub-directories, as they will currently incorrectly compile, this will be fixed soon.
+* ~~A project directory must not contain sub-directories, as they will currently incorrectly compile, this will be fixed soon.~~ Fixed.
 * Iterators have been found to produce sporadic syntax errors, use with care (and send an issue if you have any.)
