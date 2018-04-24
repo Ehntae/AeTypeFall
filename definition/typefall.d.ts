@@ -186,10 +186,11 @@ declare namespace render {
 	 * @realm Clientside
 	 * @description Used to get the cursor position
 	 * @example let [x, y] = render.cursorPos(owner());
-	 * @param player dd
+	 * @param player The player to get the cursor position of
+	 *	(it will be null if they are not looking at the screen)
 	 * @returns [number, number]
 	 */
-	function cursorPos(player: IPlayer): [number, number]; // ? Create interface for this?
+	function cursorPos(player: IEntity): [number, number]; // ? Create interface for this?
 }
 
 
