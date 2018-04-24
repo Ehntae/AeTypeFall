@@ -1,6 +1,6 @@
 {
   "name": "aetypefall",
-  "version": "0.1.9",
+  "version": "0.2.0a",
   "description": "AeTF - AeTypeFall",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

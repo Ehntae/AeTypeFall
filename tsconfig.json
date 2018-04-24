@@ -23,9 +23,9 @@
         "listEmittedFiles":                 true,
         "traceResolution":                  true,
         "listFiles":                        true,
-        "watch":                            true
+        "watch":                            false
     },
 
     // Development
-    "compileOnSave": true
+    "compileOnSave": false
 }
