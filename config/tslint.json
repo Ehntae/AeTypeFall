@@ -119,7 +119,7 @@
 		"return-undefined": true,
 		"semicolon": true,
 		"space-before-function-paren": false,
-		"newline-per-chained-call": true,
+		"newline-per-chained-call": false,
 		"newline-before-return": true,
 		"no-parameter-properties": true,
 		"no-inferrable-types": true
