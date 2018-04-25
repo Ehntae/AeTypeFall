@@ -4,5 +4,5 @@
         "*.json": "jsonc"
     },
     "typescript.tsdk": "node_modules\\typescript\\lib",
-    "tslint.exclude": "node_modules"
+    "tslint.exclude": ["node_modules", "**/node_modules"]
 }
