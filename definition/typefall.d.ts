@@ -43,21 +43,41 @@
 
 /* *********************************** End ************************************* */
 
+// * Builtins * //
+
+/**
+ * @description Primitive types
+ * @description number | string | boolean
+ */
+declare type Primative = number | string | boolean;
+
+
+/**	Conversion builtins */
+
 /**
  * @realm Shared
  * @description Convert a given value into a string.
  * @param value The target of the conversion.
  * @returns A primitive input is guarenteed to convert successfully.
  */
-declare function toString(value: Primative): string;
+declare function tostring(value: Primative): string;
 
 /**
+ * @realm Shared
  * @description Attempt to convert a given value into a string
  * @param value The target of the conversion.
  * @returns As the input can be of any value, a failure to convert may occur.
  */
-declare function toString(value: any): string | undefined;
+declare function tostring(value: any): string | undefined;
 
+/**
+ * @realm Shared
+ * @description Attempt to convert a string or a number into a number with the option
+ * of changing its numeric base.
+ * @param value The target of the conversion.
+ * @param base The radix (numeric base) for the conversion.
+ */
+declare function tonumber(value: (string | number), base?: number): number;
 
 /**
  * Reserved names; recursively blocking interface for reserved Lua keywords.
@@ -97,15 +117,7 @@ declare namespace bit {
 	function band(w1: number, ...wn: number[]): number;
 }
 
-/**	Conversion builtins */
-declare function tostring(value: number): string;
-declare function tonumber(value: (string | number), base?: number): number;
 
-/**
- * @description Primitive types
- * @description number | string | boolean
- */
-declare type Primative = number | string | boolean;
 
 /**
  * @realm Shared
