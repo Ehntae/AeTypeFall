@@ -79,6 +79,7 @@ declare function tostring(value: any): string | undefined;
  */
 declare function tonumber(value: (string | number), base?: number): number;
 
+
 /**
  * Reserved names; recursively blocking interface for reserved Lua keywords.
  */

@@ -31,8 +31,7 @@
 
     "include": [
         "../projects/**/*.ts",
-        "../definition/typefall.d.ts",
-        "../definition/typescript.lib.d.ts"
+        "../definition/**/*.d.ts"
     ],
 
     "exclude": [

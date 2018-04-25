@@ -112,6 +112,7 @@ interface Array<T> {
 		* Gets or sets the length of the array. This is a number one higher than the highest element defined in an array.
 		*/
 	length: number;
+
 	/**
 		* Returns a string representation of an array.
 		*/
@@ -297,6 +298,7 @@ interface Array<T> {
 
 	[n: number]: T;
 }
+
 
 interface ArrayConstructor {
 	readonly prototype: Array<any>;
