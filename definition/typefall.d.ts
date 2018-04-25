@@ -97,6 +97,10 @@ declare namespace bit {
 	function band(w1: number, ...wn: number[]): number;
 }
 
+/**	Conversion builtins */
+declare function tostring(value: number): string;
+declare function tonumber(value: (string | number), base: number): number;
+
 /**
  * @description Primitive types
  * @description number | string | boolean
