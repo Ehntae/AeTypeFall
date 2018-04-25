@@ -27,5 +27,7 @@
     },
 
     // Development
-    "compileOnSave": false
+    "compileOnSave": false,
+
+    "luaTarget": "JIT"
 }
