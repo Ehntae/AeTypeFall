@@ -10,7 +10,7 @@
 		"prefer-for-of": true,
 		"prefer-readonly": true,
 		"prefer-switch": true,
-		"prefer-template": true,
+		"prefer-template": false,
 		"space-within-parens": true,
 		"interface-name": true,
 		"no-invalid-template-strings": true,
@@ -122,6 +122,6 @@
 		"newline-per-chained-call": false,
 		"newline-before-return": true,
 		"no-parameter-properties": true,
-		"no-inferrable-types": true
+		"no-inferrable-types": false
 	}
 }
