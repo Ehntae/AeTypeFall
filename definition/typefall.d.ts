@@ -78,6 +78,25 @@ declare const nil: RESERVED;
 declare const end: RESERVED;
 declare const not: RESERVED;
 
+/** Bitlib (release 25) is luaJITs bitwise implementation (C) */
+declare namespace bit {
+	const bits: number;
+
+	/**
+	 * @description Returns the bitwise or of the w's
+	 * @param w1 Bitwise operand 1
+	 * @param wn Bitwise operands n...
+	 */
+	function bor(w1: number, ...wn: number[]): number;
+
+	/**
+	 * @description Returns the bitwise and of the w's
+	 * @param w1 Bitwise operand 1
+	 * @param wn Bitwise operands n...
+	 */
+	function band(w1: number, ...wn: number[]): number;
+}
+
 /**
  * @description Primitive types
  * @description number | string | boolean
