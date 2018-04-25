@@ -99,7 +99,7 @@ declare namespace bit {
 
 /**	Conversion builtins */
 declare function tostring(value: number): string;
-declare function tonumber(value: (string | number), base: number): number;
+declare function tonumber(value: (string | number), base?: number): number;
 
 /**
  * @description Primitive types
