@@ -2,12 +2,13 @@
 
 const { exec }   = require("child_process");
 const gulp       = require("gulp");
-const nodemon    = require("gulp-nodemon");
 const gulpTslint = require("gulp-tslint");
 const ts         = require("typescript");
 const tslint     = require("tslint");
 const pump       = require("pump");
 const dirSync    = require("gulp-directory-sync");
+const watch      = require("gulp-watch");
+const batch      = require("gulp-batch");
 
 const starfallPath = require("./config/config.json").starfallPath;
 
@@ -31,16 +32,13 @@ gulp.task("lint", cb => {
 });
 
 
-/**
- * This should not be auto-run via watch
- */
 gulp.task("lintFull", cb => {
-    console.log("\nIGNORE FOLLOWING OUTPUT ABOUT FANCY-LOG!\n<IGNORE>");
+    console.log("\n\t\t=== IGNORE TYPE RESOLUTION OUTPUT ===\n<IGNORE>");
 
     const typeProgram = tslint.Linter.createProgram("./tsconfig.json", ".");
     ts.getPreEmitDiagnostics(typeProgram);
 
-    console.log("<\\IGNORE>\n\n[AeTF : TypeFall] Performing a full, type-rule supported lint-check...")
+    console.log("<\\IGNORE>\n\n\t\t[AeTF : TypeFall]  Full type-rule supported lint-check -^-");
 
     pump([
         gulp.src(["./projects/**/*.ts", "!node_modules/**"], {base: "."}),
@@ -54,14 +52,16 @@ gulp.task("lintFull", cb => {
 });
 
 
-gulp.task("compile", cb => {
+const compile = cb => {
     exec("node compiler/tfc -p ./compiler/tsconfig_c.json", (err, stdout, stderr) => {
         console.log("[AeTF : TypeFall] Compiling...");
         console.log(stdout);
         console.log(stderr);
         cb(err);
     });
-});
+}
+
+gulp.task("compile", compile);
 
 
 gulp.task("sync", cb => {
@@ -72,10 +72,20 @@ gulp.task("sync", cb => {
 });
 
 
-gulp.task("compileSync", gulp.series("compile", "sync"));
+const compileSync = gulp.series("compile", "sync");
+gulp.task("compileSync", compileSync);
 
-// gulp.task("dev", cb => {
 
-//     // project change => compile => sync
+gulp.task("dev", cb => {
+    console.log("=== Starting dev-watch. Compile & sync on save ===\n");
 
-// });
+    // * project change => compile => sync
+    return watch("./projects/**/*.ts", batch((events, done) => {
+        let date = new Date();
+        let time = `${date.getHours()}:${date.getMinutes()}`;
+
+        console.log(`[${time}] Save detected!\n`);
+        compileSync(done);
+    }));
+
+});
