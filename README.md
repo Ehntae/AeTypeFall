@@ -9,6 +9,7 @@
 
 > * [Visual Studio Code](https://code.visualstudio.com) is the recommend IDE for use with TypeFall. Git Atom should work but has not yet been tested.
 >   * both Typescript and VSCode are made by Microsoft, as a consequence it is the most supportive of Typescript.
+
 > * [NodeJS](https://nodejs.org/en) is needed to use NPM (Node package manager)
 >   * Node is a requirement for installing the necessary dependencies of **AeTypeFall**, including Typescript itself.
 
@@ -46,17 +47,21 @@
 ### Notes
 
 > * Generally you should consider modularity for your projects; treat each file as a module, such that the implementation for e.g. ```class A { ... }``` would have its own file (it is convention to use PascalCasing for both a class-name and its file-name: ```class A``` => *A.ts*)
-> * Currently there is no conversion for preprocessor directives (such as --@sever, or --@name.) In place of the realm specification directives (```--@server```, ```--@client```, and ```--@shared```) you can do the following: ```if (SERVER) return;```<br/>However, you cannot return outside of a block in Typescript; you must therefore use the ```--@ts-ignore``` directive to suppress a Typescript error on the next line. In conclusion:<br/>
-> ```//@ts-ignore```<br/>
-> ```if (SERVER) return;```<br/>
-> Preprocessor directives will be coming once a comment-crawling related bug with the Typescript AST has been resolved.
+
+> * Currently there is no conversion for preprocessor directives (such as --@sever, or --@name.) In place of the realm specification directives (```--@server```, ```--@client```, and ```--@shared```) you can do the following: ```if (SERVER) return;```However, you cannot return outside of a block in Typescript; you must therefore use the ```--@ts-ignore``` directive to suppress a Typescript error on the next line. In conclusion:<br/>
+> > 1. ```//@ts-ignore```<br/>
+> > 2. ```if (SERVER) return;```<br/>
+> * Preprocessor directives will be coming once a comment-crawling related bug with the Typescript AST has been resolved.
 
 > * Bitwise operators (such as >>> << | &) are fully supported and can be used in lieu of LuaJIT's bitlib.
+
 > * Sometimes you might want to pause your working on a project, and sometimes such a project might have errors left in it that you aren't currently concerned with fixing, nor do you want linting errors or compilation to fail because of it. To solve this, simply rename a project and append an underscore (*_myProject*) to it, and it will be ignored until the underscore is removed.
+
 > * Approximately 30% of Starfall codebase has been given type definitions for use with TypeFall. This coverage will continue to increase over time, however, it is a very large workload and I am unable to work on it whilst working on the compiler. If you wish you can fork this project and work on the definitions file, as that will massively accelerate the completion of the definitions.
 
 ### Known issues
 
 > * The *undefined* keyword currently is not being identified by the Typescript AST. Use the *null* keyword instead. It will transpile correctly to Lua's *nil*.
 >   * This is a temporary measure; a fix is coming soom.
+
 > * Iterators have been found to produce sporadic syntax errors, use with care (and send an issue if you have any.)
