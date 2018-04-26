@@ -38,7 +38,7 @@ gulp.task("lintFull", cb => {
     const typeProgram = tslint.Linter.createProgram("./tsconfig.json", ".");
     ts.getPreEmitDiagnostics(typeProgram);
 
-    console.log("<\\IGNORE>\n\n\t\t[AeTF : TypeFall]  Full type-rule supported lint-check -^-");
+    console.log("<\\IGNORE>\n\n\t\t[AeTF : TypeFall]  Full type-rule supported lint-check");
 
     pump([
         gulp.src(["./projects/**/*.ts", "!node_modules/**"], {base: "."}),
@@ -79,7 +79,6 @@ gulp.task("compileSync", compileSync);
 gulp.task("dev", cb => {
     console.log("=== Starting dev-watch. Compile & sync on save ===\n");
 
-    // * project change => compile => sync
     return watch("./projects/**/*.ts", batch((events, done) => {
         let date = new Date();
         let time = `${date.getHours()}:${date.getMinutes()}`;

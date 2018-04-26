@@ -1,12 +1,9 @@
 {
   "name": "aetypefall",
-  "version": "0.2.0a",
+  "version": "0.2.1a",
   "description": "AeTF - AeTypeFall",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "bin": {
-    "tfc": "./compiler/tfc"
+    "postinstall": "npm i -g gulp-cli && cd compiler && npm i"
   },
   "repository": {
     "type": "git",
