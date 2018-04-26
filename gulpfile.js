@@ -80,6 +80,9 @@ gulp.task("compileSync", compileSync);
 gulp.task("dev", cb => {
     console.log("=== Starting dev-watch. Compile & sync on save ===\n");
 
+    console.log("Executing initial compileSync task...");
+    compileSync();
+
     return watch("./projects/**/*.ts", batch((events, done) => {
         let date = new Date();
         let time = `${date.getHours()}:${date.getMinutes()}`;
@@ -89,3 +92,6 @@ gulp.task("dev", cb => {
     }));
 
 });
+
+
+gulp.task("devDebug", gulp.series("lintFull", "compileSync"));

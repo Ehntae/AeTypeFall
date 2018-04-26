@@ -43,6 +43,8 @@
 >   * Used to run both *compile* and *sync* in sequential order (this task is synchronous).
 > * *gulp dev*
 >   * This will watch the *projects* directory for changes. Whenever a file there is saved, the *compileSync* task will be executed. (You can exit this by sending an interrupt like CTRL+C.)
+> * *gulp devDebug*
+>   * The same as *dev* except it runs the *lintFull* task before the *dev* tasks. (*dev* should be fine unless you are constantly running into issues and needing to perform a type-rule lint with *lintFull*.)
 
 ### Notes
 
