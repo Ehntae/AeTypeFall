@@ -14,7 +14,7 @@
 <blockquote>
 [NodeJS](https://nodejs.org/en) is needed to use NPM (Node package manager)
   * Node is a requirement for installing the necessary dependencies of **AeTypeFall**, including Typescript itself.
-<blockquote>
+</blockquote>
 
 ### Installing AeTypeFall and its dependencies
 
