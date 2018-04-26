@@ -46,9 +46,9 @@
 ### Notes
 
 > * Generally you should consider modularity for your projects; treat each file as a module, such that the implementation for e.g. ```class A { ... }``` would have its own file (it is convention to use PascalCasing for both a class-name and its file-name: ```class A``` => *A.ts*)
-> * Currently there is no conversion for preprocessor directives (such as --@sever, or --@name.) In place of the realm specification directives (```--@server```, ```--@client```, and ```--@shared```) you can do the following: ```if (SERVER) return;```<br/>However, you cannot return outside of a block in Typescript; you must therefore use the ```--@ts-ignore``` directive to suppress a Typescript error on the next line. In conclusion:
-> ```//@ts-ignore```
-> ```if (SERVER) return;```
+> * Currently there is no conversion for preprocessor directives (such as --@sever, or --@name.) In place of the realm specification directives (```--@server```, ```--@client```, and ```--@shared```) you can do the following: ```if (SERVER) return;```<br/>However, you cannot return outside of a block in Typescript; you must therefore use the ```--@ts-ignore``` directive to suppress a Typescript error on the next line. In conclusion:<br/>
+> ```//@ts-ignore```<br/>
+> ```if (SERVER) return;```<br/>
 > Preprocessor directives will be coming once a comment-crawling related bug with the Typescript AST has been resolved.
 
 > * Bitwise operators (such as >>> << | &) are fully supported and can be used in lieu of LuaJIT's bitlib.
