@@ -2,9 +2,11 @@
 
 ## A Typescript & JavaScript transpiler to Starfall & GLua
 
+#### If you have any questions, contact me via discord *Aeomi#2143*
+
 ### Prerequisites
 
-* [Visual Studio Code](https://code.visualstudio.com) is the recommend IDE for use with TypeFall
+* [Visual Studio Code](https://code.visualstudio.com) is the recommend IDE for use with TypeFall. Git Atom should work but has not yet been tested.
   * both Typescript and VSCode are made by Microsoft, as a consequence it is the most supportive of Typescript.
 * [NodeJS](https://nodejs.org/en) is needed to use NPM (Node package manager)
   * Node is a requirement for installing the necessary dependencies of **AeTypeFall**, including Typescript itself.
@@ -14,6 +16,7 @@
 * Clone this repository into a directory of your choice.
 * Open your command line and change the working directory to the cloned **AeTypeFall** directory.
 * Run the following command: "*npm install*"
+* Next, install the TSLint extension into your editor for dynamic linting. (Tested and working with VSCode)
 
 
 ### To create your first **AeTypeFall** project
@@ -41,7 +44,7 @@
 
 ### Notes
 
-* Bitwise operators (such as << >>> | &) are fully supported and can be used in lieu of LuaJIT's bitlib.
+* Bitwise operators (such as >>> << | &) are fully supported and can be used in lieu of LuaJIT's bitlib.
 * Approximately 30% of Starfall codebase has been given type definitions for use with TypeFall. This coverage will continue to increase over time, however, it is a very large workload and I am unable to work on it whilst working on the compiler. If you wish you can fork this project and work on the definitions file, as that will massively accelerate the completion of the definitions.
 
 ### Known issues
