@@ -1,6 +1,6 @@
 {
   "name": "aetypefall",
-  "version": "0.2.1a",
+  "version": "0.2.6a",
   "description": "AeTF - AeTypeFall",
   "scripts": {
     "postinstall": "npm i -g gulp-cli && cd compiler && npm i"
