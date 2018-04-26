@@ -3,7 +3,7 @@
 ## A Typescript & JavaScript transpiler to Starfall & GLua
 
 ### Contact
->! * If you have any questions, contact me via discord *Aeomi#2143*
+> If you have any questions, contact me via discord __Aeomi#2143__
 
 ### Prerequisites
 
