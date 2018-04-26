@@ -12,6 +12,7 @@
         "noImplicitReturns":                true,
         "strictNullChecks":                 true,
         "noImplicitThis":                   true,
+        "removeComments":                   false,
         "noUnusedLocals":                   false,          // Better to lint with TSLint than to error
         "noEmitOnError":                    true,
         "noImplicitAny":                    true,
@@ -19,14 +20,12 @@
         "sourceMap":                        false,          // Sourcemap support in AeTF 2.0
         "allowJs":                          false,
         "target":                           "es2015",          // ES2015:Compat; ES6:Next
-        "pretty":                           true,
         "noLib":                            true,
 
         // Debug:
         "listEmittedFiles":                 true,
         "traceResolution":                  true,
-        "listFiles":                        true,
-        "watch":                            true
+        "listFiles":                        true
     },
 
     "include": [
@@ -36,17 +35,13 @@
 
     "exclude": [
         "node_modules",
-        "../compiler/**/*.*"
+        "../node_modules",
+        "../compiler/**/*.*",
+        "../projects/_*/**/*.ts"
     ],
 
     // Test?
     "typeAcquisition": {
         "enable": false
-    },
-
-    // Development
-    "compileOnSave": true,
-
-    // AeTF Settings
-    "luaTarget": "JIT"
+    }
 }

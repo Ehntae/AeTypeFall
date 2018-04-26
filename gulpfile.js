@@ -22,7 +22,7 @@ const lintReport = {
 
 gulp.task("lint", cb => {
     pump([
-        gulp.src(["./projects/**/*.ts", "!node_modules/**"], {base: "."}),
+        gulp.src(["./projects/**/*.ts", "!node_modules/**", "!./projects/_*/**/*.ts"], {base: "."}),
         gulpTslint({
             formatter: "stylish",
             configuration: "./tslint.json"
@@ -41,7 +41,8 @@ gulp.task("lintFull", cb => {
     console.log("<\\IGNORE>\n\n\t\t[AeTF : TypeFall]  Full type-rule supported lint-check");
 
     pump([
-        gulp.src(["./projects/**/*.ts", "!node_modules/**"], {base: "."}),
+        // gulp.src(["./projects/**/*.ts", "!node_modules/**"], {base: "."}),
+        gulp.src(["projects/**/*.ts", "!projects/_*/**/*.ts", "!node_modules"], {base: "."}),
         gulpTslint({
             program: typeProgram,
             formatter: "stylish",

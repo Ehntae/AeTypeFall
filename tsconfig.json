@@ -24,10 +24,5 @@
         "traceResolution":                  true,
         "listFiles":                        true,
         "watch":                            false
-    },
-
-    // Development
-    "compileOnSave": false,
-
-    "luaTarget": "JIT"
+    }
 }

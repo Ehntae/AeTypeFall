@@ -12,8 +12,7 @@
     ],
 
     "exclude": [
-        "node_modules"
-    ],
-
-    "luaTarget": "JIT"
+        "node_modules",
+        "../projects/_*/**/*.ts"
+    ]
 }
