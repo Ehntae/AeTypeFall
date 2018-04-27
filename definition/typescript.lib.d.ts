@@ -340,22 +340,8 @@ interface ReadonlyArray<T> {
 }
 
 interface Math {
-	/** The mathematical constant e. This is Euler's number, the base of natural logarithms. */
-	readonly E: number;
-	/** The natural logarithm of 10. */
-	readonly LN10: number;
-	/** The natural logarithm of 2. */
-	readonly LN2: number;
-	/** The base-2 logarithm of e. */
-	readonly LOG2E: number;
-	/** The base-10 logarithm of e. */
-	readonly LOG10E: number;
 	/** Pi. This is the ratio of the circumference of a circle to its diameter. */
 	readonly PI: number;
-	/** The square root of 0.5, or, equivalently, one divided by the square root of 2. */
-	readonly SQRT1_2: number;
-	/** The square root of 2. */
-	readonly SQRT2: number;
 	/**
 	  * Returns the absolute value of a number (the value without regard to whether it is positive or negative).
 	  * For example, the absolute value of -5 is the same as the absolute value of 5.
@@ -377,12 +363,12 @@ interface Math {
 	  * @param x A numeric expression for which the arctangent is needed.
 	  */
 	atan(x: number): number;
-	/**
-	  * Returns the angle (in radians) from the X axis to a point.
-	  * @param y A numeric expression representing the cartesian y-coordinate.
-	  * @param x A numeric expression representing the cartesian x-coordinate.
-	  */
-	atan2(y: number, x: number): number;
+	// /**
+	//   * Returns the angle (in radians) from the X axis to a point.
+	//   * @param y A numeric expression representing the cartesian y-coordinate.
+	//   * @param x A numeric expression representing the cartesian x-coordinate.
+	//   */
+	// atan2(y: number, x: number): number;
 	/**
 	  * Returns the smallest integer greater than or equal to its numeric argument.
 	  * @param x A numeric expression.
