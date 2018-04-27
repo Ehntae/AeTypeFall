@@ -94,4 +94,4 @@ gulp.task("dev", cb => {
 });
 
 
-gulp.task("devDebug", gulp.series("lintFull", "compileSync"));
+gulp.task("devDebug", gulp.series("lintFull", "dev"));
