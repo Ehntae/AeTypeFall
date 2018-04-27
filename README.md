@@ -55,6 +55,8 @@
 > > 2. ```if (SERVER) return;```<br/>
 > * Preprocessor directives will be coming once a comment-crawling related bug with the Typescript AST has been resolved.
 
+> * You should consider using the ```undefined``` keyword over the ```null``` keyword. Whilst both will correctly compile to Lua's ```nil```, only ```undefined``` is thoroughly supported by Typefall and its dependencies.
+
 > * Bitwise operators are fully supported with their native syntax (```>>> | &```) and should be used in lieu of LuaJIT's bitlib.
 
 > * Sometimes you might want to pause your working on a project, and sometimes such a project might have errors left in it that you aren't currently concerned with fixing, nor do you want linting errors or compilation to fail because of it. To solve this, simply rename a project and append an underscore (*_myProject*) to it, and it will be ignored until the underscore is removed.
@@ -62,8 +64,5 @@
 > * Approximately 30% of Starfall codebase has been given type definitions for use with TypeFall. This coverage will continue to increase over time, however, it is a very large workload and I am unable to work on it whilst working on the compiler. If you wish you can fork this project and work on the definitions file, as that will massively accelerate the completion of the definitions.
 
 ### Known issues
-
-> * The *undefined* keyword currently is not being identified by the Typescript AST. Use the *null* keyword instead. It will transpile correctly to Lua's *nil*.
->   * This is a temporary measure; a fix is coming soon.
 
 > * Iterators have been found to produce sporadic syntax errors, use with care (and send an issue if you have any.)

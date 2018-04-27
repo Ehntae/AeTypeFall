@@ -105,7 +105,6 @@
 		// * Standard convention
 		"eofline": true,
 		"deprecation": true,
-		"indent": [true, "tabs", 4],
 		// Standard convention
 		"max-line-length": [true, {"limit": 120, "ignore-pattern": "^import |^export {(.*?)}"}],
 		"no-duplicate-imports": true,
@@ -121,7 +120,7 @@
 		"space-before-function-paren": false,
 		"newline-per-chained-call": false,
 		"newline-before-return": true,
-		"no-parameter-properties": true,
+		"no-parameter-properties": false,
 		"no-inferrable-types": false
 	}
 }
