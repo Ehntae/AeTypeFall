@@ -17,5 +17,8 @@
     "fs": "0.0.1-security",
     "lua.vm.js": "0.0.1",
     "nyc": "^11.5.0"
+  },
+  "devDependencies": {
+    "hoek": "^5.0.3"
   }
 }
