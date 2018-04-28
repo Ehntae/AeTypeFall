@@ -262,6 +262,40 @@ declare namespace http {
 	): void;
 }
 
+declare namespace net {
+	function getBytesLeft(): void;
+	function isStreaming(): boolean;
+	function readAngle(): IAngle;
+	function readBit(): number;
+	function readColor(): IColor;
+	function readData(n: number): string;
+	function readDouble(): number;
+	function readEntity(): IEntity;
+	function readFloat(): number;
+	function readInt(n: number): number;
+	function readMatrix(): IVMatrix;
+	function readStream(cb: (data: any) => void): void; // TODO: Determine the type of data
+	function readString(): string;
+	function readUInt(n: number): number;
+	function readVector(): IVector;
+	function receive(name: string, func: (length: number, ply: (IPlayer | undefined)) => void): void;
+	function send(target?: any, unreliable?: boolean): void; // TODO: Determine the type of target
+	function start(name: string): void;
+	function writeAngle(t: IAngle): void;
+	function writeBit(t: boolean): void;
+	function writeColor(t: IColor): void;
+	function writeData(t: string, n: number): void; // TODO: Determine the type of t
+	function writeDouble(t: number): void;
+	function writeEntity(t: IEntity): void;
+	function writeFloat(t: number): void;
+	function writeInt(t: number, n: number): void;
+	function writeMatrix(t: IVMatrix): void;
+	function writeStream(str: string): void;
+	function writeString(t: string): void;
+	function writeUInt(t: number, n: number): void; // * It should be noted that the number n < 33 and t >= 0. Put this in the tsdoc string.
+	function writeVector(t: IVector): void;
+}
+
 declare interface IScreenVector {
 	x: number;
 	y: number;
