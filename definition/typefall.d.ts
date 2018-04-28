@@ -249,6 +249,19 @@ declare namespace holograms {
 	function hologramsLeft(): number;
 }
 
+declare namespace http {
+	function Encode(data: any): string;
+	function canRequest(): boolean;
+	function get(
+		url: string, callbackSuccess: (url: string, length: number, headers: any, code: number) => void, // TODO: Determine the type of headers.
+		callbackFail: (reason: any) => void, headers: any // TODO: Determine the types of reason and headers.
+	): string;
+	function post( // TODO: Determine the type of params, headers, and reason.
+		url: string, params: any, callbackSuccess: (url: string, length: number, headers: any, code: number) => void,
+		callbackFail: (reason: any) => void, headers: any
+	): void;
+}
+
 declare interface IScreenVector {
 	x: number;
 	y: number;
