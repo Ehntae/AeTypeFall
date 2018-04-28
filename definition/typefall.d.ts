@@ -234,7 +234,7 @@ declare type IFilter = (entity: IEntity) => boolean;
 
 declare namespace find {
 	function all(filter: IFilter): IEntity[];
-	function allPlayers(filter: IFilter): IEntity[];
+	function allPlayers(filter: (player: IPlayer) => boolean): IPlayer[];
 	function byClass(className: string, filter: IFilter): IEntity[];
 	function byModel(model: string, filter: IFilter): IEntity[];
 	function inBox(corner1: IVector, corner2: IVector, filter: IFilter): IEntity[];
