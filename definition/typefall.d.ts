@@ -249,6 +249,64 @@ declare namespace holograms {
 	function hologramsLeft(): number;
 }
 
+declare namespace prop {
+	function canSpawn(): void;
+	function create(pos: IVector, ang: IAngle, model: string, frozen: boolean): IEntity;
+	function createComponent(pos: IVector, ang: IAngle, entityClass: string, model: string, frozen: boolean): any; // TODO: Determine Return Type
+	function createSent(pos: IVector, ang: IAngle, entityClass: string, frozen: boolean): IEntity;
+	function propsLeft(): number;
+	function setPropClean(on: boolean): void;
+	function setPropUndo(on: boolean): void;
+	function spawnRate(): number;
+}
+
+declare namespace http {
+	function Encode(data: any): string;
+	function canRequest(): boolean;
+	function get(
+		url: string, callbackSuccess: (url: string, length: number, headers: any, code: number) => void, // TODO: Determine the type of headers.
+		callbackFail: (reason: any) => void, headers: any // TODO: Determine the types of reason and headers.
+	): string;
+	function post( // TODO: Determine the type of params, headers, and reason.
+		url: string, params: any, callbackSuccess: (url: string, length: number, headers: any, code: number) => void,
+		callbackFail: (reason: any) => void, headers: any
+	): void;
+}
+
+declare namespace net {
+	function getBytesLeft(): void;
+	function isStreaming(): boolean;
+	function readAngle(): IAngle;
+	function readBit(): number;
+	function readColor(): IColor;
+	function readData(n: number): string;
+	function readDouble(): number;
+	function readEntity(): IEntity;
+	function readFloat(): number;
+	function readInt(n: number): number;
+	function readMatrix(): IVMatrix;
+	function readStream(cb: (data: any) => void): void; // TODO: Determine the type of data
+	function readString(): string;
+	function readUInt(n: number): number;
+	function readVector(): IVector;
+	function receive(name: string, func: (length: number, ply: (IPlayer | undefined)) => void): void;
+	function send(target?: any, unreliable?: boolean): void; // TODO: Determine the type of target
+	function start(name: string): void;
+	function writeAngle(t: IAngle): void;
+	function writeBit(t: boolean): void;
+	function writeColor(t: IColor): void;
+	function writeData(t: string, n: number): void; // TODO: Determine the type of t
+	function writeDouble(t: number): void;
+	function writeEntity(t: IEntity): void;
+	function writeFloat(t: number): void;
+	function writeInt(t: number, n: number): void;
+	function writeMatrix(t: IVMatrix): void;
+	function writeStream(str: string): void;
+	function writeString(t: string): void;
+	function writeUInt(t: number, n: number): void; // * It should be noted that the number n < 33 and t >= 0. Put this in the tsdoc string.
+	function writeVector(t: IVector): void;
+}
+
 declare interface IScreenVector {
 	x: number;
 	y: number;
@@ -557,12 +615,47 @@ declare interface IVMatrix {
 	// TODO: Populate Stub IVMatrix Interface
 }
 
-/**
- * Stub Player Interface
- */
-declare interface IPlayer {
-	STUB: any;
-	// TODO: Populate Stub Player Interface
+declare interface IPlayer extends IEntity {
+	getActiveWeapon(): string;
+	getAimVector(): IVector;
+	getArmor(): number;
+	getDeaths(): number;
+	getEyeTrace(): any; // TODO: Add ITraceResult
+	getFOV(): number;
+	getFrags(): number;
+	getFriendStatus(): string;
+	getJumpPower(): number;
+	getMaxSpeed(): number;
+	getName(): string;
+	getPing(): number;
+	getRunSpeed(): number;
+	getShootPos(): IVector;
+	getSteamID(): string;
+	getTeam(): number;
+	getTeamName(): string;
+	getUniqueID(): string;
+	getUserID(): number;
+	getVehicle(): IEntity; // TODO: Change this to IVehicle once that is added.
+	getViewEntity(): IEntity;
+	getWeapon(wep: string): any; // TODO: Change this to IWeapon once that is added. Also, find a better name for wep
+	getWeapons(): any; // TODO: Change this to IWeapon[] once that is added.
+	hasGodMode(): boolean;
+	inVehicle(): boolean;
+	isAdmin(): boolean;
+	isAlive(): boolean;
+	isBot(): boolean;
+	isConnected(): boolean;
+	isCrouching(): boolean;
+	isFlashlightOn(): boolean;
+	isFrozen(): boolean;
+	isMuted(): boolean;
+	isNPC(): boolean;
+	isNoclipped(): boolean;
+	isPlayer(): boolean;
+	isSuperAdmin(): boolean;
+	isUserGroup(group: any): boolean; // TODO: Determine the type of group.
+	keyDown(key: any): boolean; // TODO: Change group to some sort of key enum.
+	setViewEntity(ent: IEntity): void;
 }
 
 /**
@@ -600,5 +693,37 @@ declare interface IHologram extends IEntity {
 	setScale(scale: IVector): void;
 	setVel(vel: IVector): void;
 	suppressEngineLighting(suppress: boolean): void;
+}
+// tslint:disable-next-line:max-file-line-count
+
+declare interface IPhysObj {
+	applyForceCenter(force: IVector): void;
+	applyForceOffset(force: IVector, position: IVector): void;
+	applyTorque(torque: IVector): void;
+	enableDrag(drag: boolean): void;
+	enableGravity(grav: boolean): void;
+	enableMotion(move: boolean): void;
+	getAngleVelocity(): IVector;
+	getAngles(): IAngle;
+	getEntity(): IEntity;
+	getInertia(): IVector;
+	getMass(): number;
+	getMassCenter(): IVector;
+	getMaterial(): string;
+	getMesh(): any; // TODO: Create an interface for wiki.garrysmod.com/page/Structures/MeshVertex
+	getMeshConvexes(): any; // TODO: Create an interface for wiki.garrysmod.com/page/Structures/MeshVertex
+	getPos(): IVector;
+	getVelocity(): IVector;
+	isValid(): boolean;
+	localToWorld(vec: IVector): IVector;
+	localToWorldVector(vec: IVector): IVector;
+	setInertia(inertia: IVector): void;
+	setMass(mass: number): void;
+	setMaterial(material: string): void;
+	setPos(pos: IVector): void;
+	setVelocity(vel: IVector): void;
+	wake(): void;
+	worldToLocal(vec: IVector): IVector;
+	worldToLocalVector(vec: IVector): IVector;
 }
 // tslint:disable-next-line:max-file-line-count
