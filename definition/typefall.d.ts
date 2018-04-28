@@ -615,12 +615,47 @@ declare interface IVMatrix {
 	// TODO: Populate Stub IVMatrix Interface
 }
 
-/**
- * Stub Player Interface
- */
-declare interface IPlayer {
-	STUB: any;
-	// TODO: Populate Stub Player Interface
+declare interface IPlayer extends IEntity {
+	getActiveWeapon(): string;
+	getAimVector(): IVector;
+	getArmor(): number;
+	getDeaths(): number;
+	getEyeTrace(): any; // TODO: Add ITraceResult
+	getFOV(): number;
+	getFrags(): number;
+	getFriendStatus(): string;
+	getJumpPower(): number;
+	getMaxSpeed(): number;
+	getName(): string;
+	getPing(): number;
+	getRunSpeed(): number;
+	getShootPos(): IVector;
+	getSteamID(): string;
+	getTeam(): number;
+	getTeamName(): string;
+	getUniqueID(): string;
+	getUserID(): number;
+	getVehicle(): IEntity; // TODO: Change this to IVehicle once that is added.
+	getViewEntity(): IEntity;
+	getWeapon(wep: string): any; // TODO: Change this to IWeapon once that is added. Also, find a better name for wep
+	getWeapons(): any; // TODO: Change this to IWeapon[] once that is added.
+	hasGodMode(): boolean;
+	inVehicle(): boolean;
+	isAdmin(): boolean;
+	isAlive(): boolean;
+	isBot(): boolean;
+	isConnected(): boolean;
+	isCrouching(): boolean;
+	isFlashlightOn(): boolean;
+	isFrozen(): boolean;
+	isMuted(): boolean;
+	isNPC(): boolean;
+	isNoclipped(): boolean;
+	isPlayer(): boolean;
+	isSuperAdmin(): boolean;
+	isUserGroup(group: any): boolean; // TODO: Determine the type of group.
+	keyDown(key: any): boolean; // TODO: Change group to some sort of key enum.
+	setViewEntity(ent: IEntity): void;
 }
 
 /**
