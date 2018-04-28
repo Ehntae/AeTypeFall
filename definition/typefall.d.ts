@@ -249,6 +249,17 @@ declare namespace holograms {
 	function hologramsLeft(): number;
 }
 
+declare namespace prop {
+	function canSpawn(): void;
+	function create(pos: IVector, ang: IAngle, model: string, frozen: boolean): IEntity;
+	function createComponent(pos: IVector, ang: IAngle, entityClass: string, model: string, frozen: boolean): any; // TODO: Determine Return Type
+	function createSent(pos: IVector, ang: IAngle, entityClass: string, frozen: boolean): IEntity;
+	function propsLeft(): number;
+	function setPropClean(on: boolean): void;
+	function setPropUndo(on: boolean): void;
+	function spawnRate(): number;
+}
+
 declare namespace http {
 	function Encode(data: any): string;
 	function canRequest(): boolean;
