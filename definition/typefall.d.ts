@@ -649,3 +649,35 @@ declare interface IHologram extends IEntity {
 	suppressEngineLighting(suppress: boolean): void;
 }
 // tslint:disable-next-line:max-file-line-count
+
+declare interface IPhysObj {
+	applyForceCenter(force: IVector): void;
+	applyForceOffset(force: IVector, position: IVector): void;
+	applyTorque(torque: IVector): void;
+	enableDrag(drag: boolean): void;
+	enableGravity(grav: boolean): void;
+	enableMotion(move: boolean): void;
+	getAngleVelocity(): IVector;
+	getAngles(): IAngle;
+	getEntity(): IEntity;
+	getInertia(): IVector;
+	getMass(): number;
+	getMassCenter(): IVector;
+	getMaterial(): string;
+	getMesh(): any; // TODO: Create an interface for wiki.garrysmod.com/page/Structures/MeshVertex
+	getMeshConvexes(): any; // TODO: Create an interface for wiki.garrysmod.com/page/Structures/MeshVertex
+	getPos(): IVector;
+	getVelocity(): IVector;
+	isValid(): boolean;
+	localToWorld(vec: IVector): IVector;
+	localToWorldVector(vec: IVector): IVector;
+	setInertia(inertia: IVector): void;
+	setMass(mass: number): void;
+	setMaterial(material: string): void;
+	setPos(pos: IVector): void;
+	setVelocity(vel: IVector): void;
+	wake(): void;
+	worldToLocal(vec: IVector): IVector;
+	worldToLocalVector(vec: IVector): IVector;
+}
+// tslint:disable-next-line:max-file-line-count
