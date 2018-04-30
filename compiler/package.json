@@ -4,7 +4,7 @@
   "description": "TypeFall Compiler",
   "main": "tfc.js",
   "author": "Aeomi",
-  "license": "SEE LICENSE IN ../LICENSE.TXT",
+  "license": "SEE LICENSE IN LICENSE.TXT",
   "dependencies": {
     "@types/node": "^9.4.7",
     "@types/yargs": "^11.0.0",
