@@ -500,7 +500,7 @@ declare interface IEntity {
 	isValidPhys(): boolean;
 	isVehicle(): boolean;
 	isWeapon(): boolean;
-	isWeldedTo(): boolean;
+	isWeldedTo(): IEntity;
 	linkComponent(entity: IEntity): void;
 	localToWorld(angle: IVector): IVector;
 	localToWorldIAngles(angle: IAngle): IAngle;
