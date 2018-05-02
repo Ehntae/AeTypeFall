@@ -489,6 +489,7 @@ declare interface ICollisionData {
 
 }
 
+
 /**
  * @realm Shared
  * @description Starfall's builtin entity library.
@@ -607,6 +608,7 @@ declare interface IEntity {
 	worldToLocalIAngles(angle: IAngle): IAngle;
 }
 
+
 /**
  * Stub VMatrix Interface
  */
@@ -614,6 +616,7 @@ declare interface IVMatrix {
 	STUB: any;
 	// TODO: Populate Stub IVMatrix Interface
 }
+
 
 declare interface IPlayer extends IEntity {
 	getActiveWeapon(): string;
@@ -658,6 +661,41 @@ declare interface IPlayer extends IEntity {
 	setViewEntity(ent: IEntity): void;
 }
 
+
+declare interface ITraceResult {
+	Entity: IEntity,
+	Fraction: number,
+	FractionLeftSolid: number,
+	Hit: boolean,
+	HitBox: number,
+	HitGroup: number,
+	HitNoDraw: boolean,
+	HitNonWorld: boolean,
+	HitNormal: IVector,
+	HitPos: IVector,
+	HitSky: boolean,
+	HitTexture: string,
+	HitWorld: boolean,
+	MatType: number,
+	Normal: IVector,
+	PhysicsBone: number,
+	StartPos: IVector,
+	SurfaceProps: number,
+	StartSolid: boolean,
+	AllSolid: boolean
+}
+
+
+declare namespace trace {
+	function trace(
+		startPosition: IVector, endPosition: IVector,
+		filter: IFilter, traceMask: any, 	// any => unknown
+		collisionGroup: any, 				// any => unknown
+
+	): ITraceResult;
+}
+
+
 /**
  * Stub PhysObj Interface
  */
@@ -665,6 +703,7 @@ declare interface IPhysObj {
 	STUB: any;
 	// TODO: Populate Stub PhysObj Interface
 }
+
 
 /**
  * @realm Shared
@@ -694,7 +733,7 @@ declare interface IHologram extends IEntity {
 	setVel(vel: IVector): void;
 	suppressEngineLighting(suppress: boolean): void;
 }
-// tslint:disable-next-line:max-file-line-count
+
 
 declare interface IPhysObj {
 	applyForceCenter(force: IVector): void;
@@ -726,4 +765,3 @@ declare interface IPhysObj {
 	worldToLocal(vec: IVector): IVector;
 	worldToLocalVector(vec: IVector): IVector;
 }
-// tslint:disable-next-line:max-file-line-count
