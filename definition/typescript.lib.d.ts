@@ -755,25 +755,25 @@ interface IArguments {
 	[Symbol.iterator](): IterableIterator<any>;
 }
 
-interface Map<K, V> {
-	/** Returns an iterable of entries in the map. */
-	[Symbol.iterator](): IterableIterator<[K, V]>;
+// interface Map<K, V> {
+// 	/** Returns an iterable of entries in the map. */
+// 	[Symbol.iterator](): IterableIterator<[K, V]>;
 
-	/**
-	 * Returns an iterable of key, value pairs for every entry in the map.
-	 */
-	entries(): IterableIterator<[K, V]>;
+// 	/**
+// 	 * Returns an iterable of key, value pairs for every entry in the map.
+// 	 */
+// 	entries(): IterableIterator<[K, V]>;
 
-	/**
-	 * Returns an iterable of keys in the map
-	 */
-	keys(): IterableIterator<K>;
+// 	/**
+// 	 * Returns an iterable of keys in the map
+// 	 */
+// 	keys(): IterableIterator<K>;
 
-	/**
-	 * Returns an iterable of values in the map
-	 */
-	values(): IterableIterator<V>;
-}
+// 	/**
+// 	 * Returns an iterable of values in the map
+// 	 */
+// 	values(): IterableIterator<V>;
+// }
 
 interface ReadonlyMap<K, V> {
 	/** Returns an iterable of entries in the map. */
