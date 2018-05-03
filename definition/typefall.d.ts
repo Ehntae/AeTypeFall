@@ -43,6 +43,37 @@
 
 /* *********************************** End ************************************* */
 
+
+// * Typescript Builtins (adapted) * //
+
+interface Table<K, V> {
+	key: K;
+	value: V;
+}
+
+interface Map<K, V> {
+
+	get(key: K): void;
+	set(key: K, value: V): void
+	containsKey(key: K): boolean;
+
+	/**
+	 * Remove a key, and its value from the map
+	 * @param key The key to remove
+	 * @returns Returns whether the key to remove existed
+	 */
+	remove(key: K): boolean;
+	
+	keys(): K[];
+	values(): V[];
+
+	items(): Table<K, V>[];
+
+	count(): number;
+
+}
+
+
 // * Builtins * //
 
 /**
@@ -98,27 +129,6 @@ declare const and: RESERVED;
 declare const nil: RESERVED;
 declare const end: RESERVED;
 declare const not: RESERVED;
-
-/** Bitlib (release 25) is luaJITs bitwise implementation (C) */
-declare namespace bit {
-	const bits: number;
-
-	/**
-	 * @description Returns the bitwise or of the w's
-	 * @param w1 Bitwise operand 1
-	 * @param wn Bitwise operands n...
-	 */
-	function bor(w1: number, ...wn: number[]): number;
-
-	/**
-	 * @description Returns the bitwise and of the w's
-	 * @param w1 Bitwise operand 1
-	 * @param wn Bitwise operands n...
-	 */
-	function band(w1: number, ...wn: number[]): number;
-}
-
-
 
 /**
  * @realm Shared
@@ -194,6 +204,71 @@ declare namespace hook {
 	 */
 	function remove(eventName: string, hookName: string): void;
 }
+
+
+/**
+ * @realm Shared
+ * @description Starfall's builtin timer library
+ */
+declare namespace timer {
+	function adjust(name: string, delay: number, repetitions: number, callback: () => {}): boolean;
+	function create(name: string, delay: number, repetitions: number, callback: () => {}): void;
+	function curtime(): number;
+	function exists(name: string): boolean;
+	function frametime(): number;
+	function getTimersLeft(): number;
+	function pause(name: string): boolean;
+	function realtime(): number;
+	function remove(name: string): void;
+	function repsleft(name: string): number | undefined;
+	function simple(delay: number, callback: () => {}): void;
+	function start(name: string): boolean;
+	function stop(name: string): boolean;
+	function systime(): number;
+	function timeleft(name: string): number | undefined;
+	function toggle(name: string): number; // TODO: Return type is "status of the timer" make sure this is actually a number
+	function unpause(name: string): boolean;
+}
+
+declare enum INPUT_KEYCODES {
+	RUN			=	4096,
+	LEFT		=	128,
+	WALK		=	262144,
+	FORWARD		=	8,
+	DUCK		=	4,
+	SCORE		=	65536,
+	JUMP		=	2,
+	USE			=	32,
+	BACK		=	16,
+	WEAPON1		=	1048576,
+	MOVERIGHT	=	1024,
+	RELOAD		=	8192,
+	ALT2		=	32768,
+	CANCEL		=	64,
+	ATTACK2		=	2048,
+	ALT1		=	16384,
+	RIGHT		=	256,
+	MOVELEFT	=	512,
+	WEAPON2		=	2097152,
+	ZOOM		=	524288,
+	ATTACK		=	1,
+	GRENADE1	=	8388608,
+	SPEED		=	131072,
+	GRENADE2	=	16777216,
+	BULLRUSH	=	4194304
+}
+
+
+/**
+ * @realm Shared
+ * @description Starfall's builtin input library
+ */
+declare namespace input {
+	function enableCursor(state: boolean): void;
+	function getCursorPos(): [number, number];
+	function getKeyName(keyId: number): string;
+}
+
 
 /**
  * @realm Client
@@ -689,8 +764,8 @@ declare interface ITraceResult {
 declare namespace trace {
 	function trace(
 		startPosition: IVector, endPosition: IVector,
-		filter: IFilter, traceMask: any, 	// any => unknown
-		collisionGroup: any, 				// any => unknown
+		filter?: IFilter, traceMask?: any, 	// any => unknown
+		collisionGroup?: any, 				// any => unknown
 
 	): ITraceResult;
 }
