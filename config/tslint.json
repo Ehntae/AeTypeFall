@@ -51,7 +51,7 @@
 		"no-import-side-effect": true,
 		"no-unsafe-any": true,
 		"no-internal-module": true,
-		"no-non-null-assertion": true,
+		"no-non-null-assertion": false,
 		"no-var-keyword": true,
 		"no-var-requires": true,
 		"only-arrow-functions": [true, "allow-declarations"],
