@@ -19,8 +19,9 @@
         "alwaysStrict":                     true,
         "sourceMap":                        false,          // Sourcemap support in AeTF 2.0
         "allowJs":                          false,
-        "target":                           "es2015",          // ES2015:Compat; ES6:Next
+        "target":                           "es6",          // ES2015:Compat; ES6:Next
         "noLib":                            true,
+        "allowUnusedLabels":                true,
 
         // Debug:
         "listEmittedFiles":                 true,
@@ -41,7 +42,7 @@
     ],
 
     // Test?
-    "typeAcquisition": {
-        "enable": false
-    }
+    // "typeAcquisition": {
+    //     "enable": false
+    // }
 }

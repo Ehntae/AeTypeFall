@@ -114,7 +114,6 @@ declare function tonumber(value: (string | number), base?: number): number;
 /**
  * Reserved names; recursively blocking interface for reserved Lua keywords.
  */
-// tslint:disable-next-line:interface-name
 declare interface RESERVED {
 	DO_NOT_USE_RESERVED_NAME: RESERVED;
 }
@@ -164,6 +163,8 @@ declare function printTable(table: object): void;
  */
 declare function chip(): IEntity;
 
+declare function setName(name: string): void;
+
 /**
  * @realm Shared
  * Generally used to get the player who placed the processor.
@@ -174,13 +175,73 @@ declare function owner(): IEntity;
 
 /**
  * @realm Shared
- * @description Used to get the entity object representing the player with a given userId.
+ * @description Same as owner() when used on serverside, but returns local client when used clientside.
+ * Used to get the entity object representing the player with a given userId when the argument is provided.
  * @example Type "status" in console to get userIds
  * @param userId The userId of the player you want to get.
- * @returns IEntity | undefined Will be undefined (nil) if the userId is invalid.
  */
-declare function player(userId: number): IEntity | undefined;
+declare function player(userId?: number): IEntity | undefined;
 
+/**
+ * Hookable events
+ * @note Make sure to check for eventParameters to see what data the event passes to the callback
+ */
+
+// declare type HOOKABLE_EVENTS = string;
+declare enum HOOKABLE_EVENTS {
+	/**
+	 * @realm Client
+	 * @description Event occurs when a frame is requested to be drawn on screen (both 2D & 3D contexts)
+	 */
+	RENDER = "render",
+
+	/**
+	 * @realm Shared
+	 * @description 
+	 * @eventParameter {IEntity} | Entity that had been driven
+	 * @eventParameter {IPlayer} | Player that had driven the entity
+	 */
+	END_ENTITY_DRIVING = "EndEntityDriving",
+
+	/**
+	 * @realm Shared
+	 * @description Called when an entity is removed
+	 * @eventParameter {IEntity} | Entity being removed
+	 */
+	ENTITY_REMOVED = "EntityRemoved",
+
+	/**
+	 * @realm Shared
+	 * @description Called when a player presses a key
+	 * @eventParameter {IPlayer} | Player who is pressing the key
+	 * @eventParameter {KEY_CODE} | The keycode for the key being pressed
+	 */
+	KEY_PRESS = "KeyPress",
+
+	/**
+	 * @realm Shared
+	 * @description Called when a player releases a key
+	 * @eventParameter {IPlayer} | Player who released the key
+	 * @eventParameter {KEY_CODE} | The keycode for the key being released
+	 */
+	KEY_RELEASE = "KeyRelease",
+
+	/**
+	 * @realm Shared
+	 * @description Event occurs when an input wired to the Starfall chip is written to
+	 * @eventParameter {string} | The name of the input
+	 * @eventParameter {any} | The value of the input
+	 */
+	INPUT_CHANGED = "input"
+}
+
+declare type Byte = string;
+
+declare namespace string {
+	function len(str: string): number;
+	function sub(str: string, start: number, end: number): string;
+	function byte(str: string, index?: number): Byte;
+}
 
 /**
  * @realm Shared
@@ -194,7 +255,7 @@ declare namespace hook {
 	 * @param hookName Unique identifier for the hook being attached to the event
 	 * @param callback The function that is called(back) whenever the event fires
 	 */
-	function add(eventName: string, hookName: string, callback: () => void): void;
+	function add(eventName: HOOKABLE_EVENTS, hookName: string, callback: Function): void;
 
 	/**
 	 * @realm Shared
@@ -202,7 +263,7 @@ declare namespace hook {
 	 * @param eventName Name of the event the 'hook' is attached to
 	 * @param hookName Unique identifier for the hook to remove from the event
 	 */
-	function remove(eventName: string, hookName: string): void;
+	function remove(eventName: HOOKABLE_EVENTS, hookName: string): void;
 }
 
 
@@ -211,8 +272,8 @@ declare namespace hook {
  * @description Starfall's builtin timer library
  */
 declare namespace timer {
-	function adjust(name: string, delay: number, repetitions: number, callback: () => {}): boolean;
-	function create(name: string, delay: number, repetitions: number, callback: () => {}): void;
+	function adjust(name: string, delay: number, repetitions: number, callback: Function): boolean;
+	function create(name: string, delay: number, repetitions: number, callback: Function): void;
 	function curtime(): number;
 	function exists(name: string): boolean;
 	function frametime(): number;
@@ -221,7 +282,7 @@ declare namespace timer {
 	function realtime(): number;
 	function remove(name: string): void;
 	function repsleft(name: string): number | undefined;
-	function simple(delay: number, callback: () => {}): void;
+	function simple(delay: number, callback: Function): void;
 	function start(name: string): boolean;
 	function stop(name: string): boolean;
 	function systime(): number;
@@ -265,9 +326,64 @@ declare enum INPUT_KEYCODES {
  */
 declare namespace input {
 	function enableCursor(state: boolean): void;
+	/** 
+	 * !TupleReturn 
+	 */
 	function getCursorPos(): [number, number];
 	function getKeyName(keyId: number): string;
+	function isControlDown(): boolean;
+	function isKeyDown(key: INPUT_KEYCODES): boolean;
+	function isShiftDown(): boolean;
+	function lookupBinding(binding: string): [number, string];
+	function screenToVector(x: number, y: number): IVector;
 }
+
+declare interface IPolygon {
+	x: number;
+	y: number;
+	u?: number;
+	v?: number;
+}
+
+declare type IMaterial = any;
+
+declare type IMarkupObject = any;
+
+declare type IMatrix = any;
+
+declare enum TEXTFILTER {
+	NONE,
+	POINT,
+	LINEAR,
+	ANISOTRPIC
+}
+
+declare enum STENCILOPERATION {
+	STENCILOPERATION_KEEP 		= 1,
+	STENCILOPERATION_ZERO 		= 2,
+	STENCILOPERATION_REPLACE 	= 3,
+	STENCILOPERATION_INCRSAT 	= 4,
+	STENCILOPERATION_DECRSAT 	= 5,
+	STENCILOPERATION_INVERT 	= 6,
+	STENCILOPERATION_INCR 		= 7,
+	STENCILOPERATION_DECR 		= 8
+}
+
+declare enum STENCILCOMPARISONFUNCTION {
+	STENCILCOMPARISONFUNCTION_NEVER 		= 1,
+	STENCILCOMPARISONFUNCTION_LESS 			= 2,
+	STENCILCOMPARISONFUNCTION_EQUAL 		= 3,
+	STENCILCOMPARISONFUNCTION_LESSEQUAL 	= 4,
+	STENCILCOMPARISONFUNCTION_GREATER 		= 5,
+	STENCILCOMPARISONFUNCTION_NOTEQUAL 		= 6,
+	STENCILCOMPARISONFUNCTION_GREATEREQUAL 	= 7,
+	STENCILCOMPARISONFUNCTION_ALWAYS 		= 8
+}
+
+
+declare function Matrix(): IVMatrix;
+
+
 
 
 /**
@@ -280,15 +396,31 @@ declare namespace render {
 
 	function drawRectOutline(x: number, y: number, width: number, height: number): void;
 
-	function drawRoundedBox(cornerRadius: number, x: number, y: number, width: number, height: number): void;
+	function drawRectFast(x: number, y: number, width: number, height: number): void;
+	
+	function drawRoundedBox(radius: number, x: number, y: number, width: number, height: number): void;
+	
+	function drawRoundedBoxEx(radius: number, x: number, y: number, width: number, height: number,
+		topLeft: boolean, topRight: boolean, bottomLeft: boolean, bottomRight: boolean): void;
 
-	function drawRoundedBoxEX(
-		cornerRadius: number, x: number, y: number, width: number, height: number,
-		roundTopLeft: boolean, roundTopRight: boolean, roundBottomLeft: boolean, roundBottomRight: boolean,
-	): void;
+	function drawCircle(x: number, y: number, radius: number): void;
+
+	function drawLine(x1: number, y1: number, x2: number, y2: number): void;
+
+	function drawPoly(vertices: IPolygon[]): void;
+
+	function drawRectOutline(x: number, y: number, width: number, height: number): void;
+
+	function drawRoundedBox(cornerRadius: number, x: number, y: number, width: number, 
+		height: number): void;
+
+	function drawRoundedBoxEX(cornerRadius: number, x: number, y: number, width: number, 
+		height: number, roundTopLeft: boolean, roundTopRight: boolean, roundBottomLeft: boolean, 
+		roundBottomRight: boolean): void;
 
 	function drawSimpleText(x: number, y: number, text: string, xAlignment?: number, yAlignment?: number): void;
-	// function drawText(x: number, y: number, alignment: any): void; // TODO: Figure out type
+	
+	function drawText(x: number, y: number, alignment: any): void;
 
 	function setColor(color: IColor): void;
 
@@ -301,15 +433,123 @@ declare namespace render {
 	 *	(it will be null if they are not looking at the screen)
 	 * @returns [number, number]
 	 */
-	function cursorPos(player: IEntity): [number, number]; // ? Create interface for this?
-}
+	function cursorPos(player?: IEntity): [number, number]; // ? Create interface for this?
 
+	function clear(color: IColor, clearDepth?: boolean): void;
+
+	function createFont(font: string, size: number, weight: number, antialias: boolean, 
+		additive: boolean, shadow: boolean, outline: boolean, blur: boolean, extended: boolean): void;
+
+	function createRenderTarget(name: string): void;
+
+	function destroyRenderTarget(name: string): void;
+
+	function destroyTexture(material: string): void;
+
+	function drawTexturedRect(x: number, y: number, w: number, height: number): void;
+
+	function drawTexturedRectFast(x: number, y: number, w: number, height: number): void;
+
+	function drawTexturedRectRotated(x: number, y: number, w: number, height: number, angle: number): void;
+
+	function drawTexturedRectRotatedFast(x: number, y: number, w: number, height: number, angle: number): void;
+
+	function drawTexturedRectUV(x: number, y: number, width: number, height: number, startU: number, 
+		startV: number, endU: number, endV: number): void;
+
+	function drawTexturedRectUVFast(x: number, y: number, width: number, height: number, startU: number, 
+		startV: number, endU: number, endV: number, UVHack: boolean): void;
+
+	function enableDepth(enable: boolean): void;
+
+	function enableScissorRect(startX: number, startY: number, endX: number, endY: number): void;
+
+	function getDefaultFont(): string;
+
+	/**
+	 * !TupleReturn
+	*/
+	function getGameResolution(): [number, number];
+
+	/**
+	 * !TupleReturn
+	*/
+	function getResolution(): [number, number];
+
+	function getScreenEntity(): IEntity;
+
+	function getScreenInfo(entity: IEntity): any;
+
+	// /**
+	//  * !TupleReturn
+	// */
+	function getTextSize(text: string): number;
+
+	function getTextureID(texturePath: string, callback: Function): IMaterial;
+
+	function isHUDActive(): boolean;
+
+	function parseMarkup(markupString: string, maxSize: number): IMarkupObject;
+
+	function popMatrix(): void;
+
+	function popViewMatrix(): void;
+
+	function pushMatrix(matrix: IMatrix, relativeToWorld: boolean): void;
+
+	function pushViewMatrix(viewMatrix: IVMatrix): void;
+
+	function readPixel(x: number, y: number): IColor;
+
+	function selectRenderTarget(name?: string): void;
+
+	function setBackgroundColor(color: IColor, screen: IEntity): void;
+
+	function setColor(color: IColor): void;
+
+	function setCullMode(mode: boolean): void;	// might have to change this to an int
+
+	function setFilterMag(textFilter: TEXTFILTER): void;
+
+	function setFilterMin(textFilter: TEXTFILTER): void;
+
+	function setFont(font: string): void;
+
+	function setMaterial(material: IMaterial): void;
+
+	function setRGBA(r: number, g: number, b: number, a: number): void;
+
+	function setRenderTargetTexture(name: string): void;
+
+	function setStencilCompareFunction(compareFunction: STENCILCOMPARISONFUNCTION): void;
+
+	function setStencilEnable(enable: boolean): void;
+
+	function setStencilFailOperation(operation: STENCILOPERATION): void;
+
+	function setStencilPassOperation(operation: STENCILOPERATION): void;
+
+	function setStencilReferenceValue(referenceValue: number): void;
+
+	function setStencilTestMask(mask: number): void;
+
+	function setStencilWriteMask(mask: number): void;
+
+	function setStencilZFailOperation(operation: STENCILOPERATION): void;
+
+	function setTexture(material: IMaterial): void;
+
+	function setTextureFromScreen(entity: IEntity): void;
+
+	function traceSurfaceColor(vector1: IVector, vector2: IVector): void;
+
+}
 
 declare type IFilter = (entity: IEntity) => boolean;
 
 declare namespace find {
 	function all(filter: IFilter): IEntity[];
-	function allPlayers(filter: (player: IPlayer) => boolean): IPlayer[];
+	function allPlayers(filter?: (player: IPlayer) => boolean): IPlayer[];
 	function byClass(className: string, filter: IFilter): IEntity[];
 	function byModel(model: string, filter: IFilter): IEntity[];
 	function inBox(corner1: IVector, corner2: IVector, filter: IFilter): IEntity[];
@@ -342,7 +582,7 @@ declare namespace http {
 		url: string, callbackSuccess: (url: string, length: number, headers: any, code: number) => void, // TODO: Determine the type of headers.
 		callbackFail: (reason: any) => void, headers: any // TODO: Determine the types of reason and headers.
 	): string;
-	function post( // TODO: Determine the type of params, headers, and reason.
+	function post(// TODO: Determine the type of params, headers, and reason.
 		url: string, params: any, callbackSuccess: (url: string, length: number, headers: any, code: number) => void,
 		callbackFail: (reason: any) => void, headers: any
 	): void;
@@ -396,7 +636,7 @@ declare function Vector(x: number, y: number, z?: number): IVector;
 
 /**
  * @realm Shared
- * @description Starfall's builtin render library
+ * @description Starfall's builtin Vector library
  */
 declare interface IVector {
 	x: number;
@@ -579,7 +819,6 @@ declare interface IEntity {
 	applyForceOffset(force: IVector, offset: IVector): void;
 	applyTorque(torque: IVector): void;
 	breakEnt(): void;
-
 	// TODO: clarify this by interrogating sfex devs
 	emitSound(path: string, level?: number, pitch?: number, channel?: number): void;
 	enableDrag(enable: boolean): void;
@@ -685,11 +924,40 @@ declare interface IEntity {
 
 
 /**
- * Stub VMatrix Interface
+ * VMatrix Interface
  */
 declare interface IVMatrix {
-	STUB: any;
-	// TODO: Populate Stub IVMatrix Interface
+	getAngles(): IAngle;
+	/** !TupleReturn */
+	getAxisAngle(): [number, number];
+	getField(): any;
+	getForward(): IVector;
+	getInverse(): IVMatrix;
+	getInverseTR(): IVMatrix;
+	getRight(): IVector;
+	getScale(): IVector;
+	getTranslation(): IVector;
+	getTransposed(): IMatrix;
+	getUp(): IVector;
+	invert(): boolean;
+	invertTR(): void;
+	isIdentity(): boolean;
+	isRotationMatrix(): boolean;
+	rotate(angle: IAngle): void;
+	scale(vector: IVector): void;
+	scaleTranslation(amount: number): void;
+	set(sourceMatrix: IVMatrix): void;
+	setAngles(angle: IAngle): void;
+	setField(row: number, column: number, value: any): void;
+	setForward(forward: IVector): void;
+	setIdentity(): void;
+	setRight(rightVector: IVector): void;
+	setScale(scale: IVector): void;
+	setTranslation(vector: IVector): void;
+	setUp(upVector: IVector): void;
+	toTable(): any;
+	translate(vector: IVector): void;
+	transpose(): void;
 }
 
 
