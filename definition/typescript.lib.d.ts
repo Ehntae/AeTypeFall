@@ -856,6 +856,7 @@ interface WeakSetConstructor {
 interface String {
 	/** Iterator */
 	[Symbol.iterator](): IterableIterator<string>;
+	length: number;
 }
 
 interface Int8Array {

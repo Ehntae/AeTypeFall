@@ -6,7 +6,7 @@
 		"max-file-line-count": [true, 300],
 
 		// * Typescript convention; enable to enforce consistency across all of typefall (change false to true)
-		"typedef-whitespace": [false, {
+		"typedef-whitespace": [true, {
 			"call-signature": "nospace",
 			"index-signature": "nospace",
 			"parameter": "nospace",
