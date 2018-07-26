@@ -1,7 +1,0 @@
---[[
-
-    TypeFall Standard Library
-
-]]
-
--- ...
